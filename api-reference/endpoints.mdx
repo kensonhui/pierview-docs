@@ -1,0 +1,45 @@
+---
+title: "Endpoints"
+description: "Placeholder — list of planned API endpoints"
+---
+
+## Placeholder endpoints
+
+<Note>
+  **Placeholder.** The following endpoints are planned but not yet implemented. Paths, methods, and response schemas are subject to change.
+</Note>
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/scans` | List scans |
+| `POST` | `/scans` | Create a new scan |
+| `GET` | `/scans/{id}` | Get scan details and results |
+| `GET` | `/brands` | List brands |
+| `POST` | `/brands` | Create a brand |
+| `GET` | `/prompts` | List prompts |
+| `POST` | `/prompts` | Create prompts |
+| `GET` | `/exports` | Export visibility/sentiment/citation data |
+
+## Example response schema (placeholder)
+
+Minimal example for `GET /scans/{id}`:
+
+```json
+{
+  "id": "scan_abc123",
+  "status": "completed",
+  "created_at": "2025-01-15T10:00:00Z",
+  "visibility": 72.5,
+  "sentiment": { "positive": 60, "neutral": 30, "negative": 10 },
+  "citation_rate": 45.2
+}
+```
+
+<Warning>
+  This schema is illustrative. Actual fields and structure will be documented when the API launches.
+</Warning>
+
+## Next steps
+
+- See [API Overview](/api-reference/introduction)
+- See [Authentication](/api-reference/authentication) (placeholder)

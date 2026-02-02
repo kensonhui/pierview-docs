@@ -1,0 +1,58 @@
+---
+title: "Understanding Sources"
+description: "Sources vs citations, domain vs URL view, and source-type strategies"
+---
+
+import MetricsCallout from '/snippets/metrics-callout.mdx';
+
+## Sources vs citations
+
+- **Citation** — A specific URL or reference the AI includes in its answer (e.g., `https://g2.com/products/pierview/reviews`).
+- **Source** — The domain or site behind that citation (e.g., `g2.com`). Sources roll up multiple URLs.
+
+Pierview shows both: which exact URLs get cited and which domains appear most often. Use **domain view** for strategy (which sites to target) and **URL view** for tactical checks (which pages earn citations).
+
+## Key metrics: Used and Avg Citations
+
+<MetricsCallout />
+
+- **Used** — How many responses include at least one citation from this source. High Used = AI trusts this source frequently.
+  - Example: G2 appears in 8 of 10 responses → Used = 8
+
+- **Avg Citations** — Average number of times this source is cited per response. Higher = more prominent.
+  - Formula: <Latex>{"\\text{Avg Citations} = \\frac{\\text{Total citations from source}}{\\text{Responses}}"}</Latex>
+
+**Why it matters:** Sources with high Used but low Avg Citations are still important — they’re consistent. Sources with high Avg Citations dominate answers. Target both for content and PR.
+
+## Source-type strategies
+
+<AccordionGroup>
+  <Accordion title="Editorial (news, blogs, publications)">
+    High authority. Pitch PR, contribute expert quotes, get featured in roundups. Create content that journalists and editors want to cite.
+  </Accordion>
+  <Accordion title="Corporate / Directories">
+    G2, Capterra, your site. Optimize directory listings and create citeable pages (comparisons, FAQs, how-tos) on your domain.
+  </Accordion>
+  <Accordion title="UGC (reviews, forums, communities)">
+    Reddit, Trustpilot, etc. Encourage reviews and participate where it makes sense. UGC often appears in "what people say" answers.
+  </Accordion>
+  <Accordion title="Reference (Wikipedia, encyclopedias)">
+    Harder to influence but high trust. Consider Wikipedia presence for established brands; avoid promotional editing.
+  </Accordion>
+  <Accordion title="Your website">
+    Your domain. Focus on clear criteria, comparisons, FAQs, and structured content. See [Create a Best X page](/playbooks/best-x-page-citations).
+  </Accordion>
+</AccordionGroup>
+
+## Action loop: Insight → Action → Measure → Iterate
+
+1. **Insight** — Identify source gaps: domains AI cites often where you don’t appear.
+2. **Action** — Content (create citeable pages), PR (pitch those publications), directories (optimize listings).
+3. **Measure** — Run scans and track Used, Avg Citations, and your share over time.
+4. **Iterate** — Double down on what works. Adjust prompts and sources as the market shifts.
+
+## Next steps
+
+- Deep dive into [Citations](/core-features/analysis/citations) and citation quality
+- Use [Turn source gaps into PR pitch](/playbooks/source-gaps-pr-pitch) playbook
+- Apply [Optimization](/core-features/actions/optimization) checklist

@@ -1,0 +1,45 @@
+---
+title: "Prompts"
+description: "What prompts are, how to design them, and prompt hygiene"
+---
+
+## What prompts are
+
+**Prompts** are the queries Pierview sends to AI models to simulate real user searches. When someone asks "best project management tools" in ChatGPT or Perplexity, that's the kind of query we track. Your prompts define what "visibility" means for your brand.
+
+## Prompt design patterns
+
+These patterns reflect how people actually ask AI for recommendations:
+
+| Pattern | Example | Use case |
+|---------|---------|----------|
+| **Best X** | "best CRM for startups" | Category consideration |
+| **X vs Y** | "HubSpot vs Salesforce" | Competitor comparison |
+| **How-to** | "how to choose a CRM" | Research phase |
+| **Alternatives** | "HubSpot alternatives" | Switching intent |
+
+<Info>
+  Mix patterns to capture different stages of the buyer journey. "Best X" and "alternatives" often drive the most volume.
+</Info>
+
+## Prompt hygiene
+
+**Avoid too broad:** "best software" won't give actionable insights. Narrow to your category.
+
+**Avoid purely branded:** "Pierview pricing" will usually return you — useful for sentiment, less so for visibility share. Include unbranded prompts.
+
+**Balance branded and unbranded:** Track both "best AI visibility tools" (unbranded) and "Pierview review" (branded) to see discovery vs. evaluation.
+
+## Suggested prompt templates
+
+- `best [category] for [audience]` — e.g., "best CRM for small business"
+- `[category] vs [competitor]` — e.g., "Salesforce vs HubSpot"
+- `how to [goal] [category]` — e.g., "how to choose a project management tool"
+- `[brand] alternatives` — e.g., "Asana alternatives"
+- `[brand] review` or `[brand] pricing` — branded sentiment checks
+
+## Next steps
+
+- Add [brands](/core-features/monitoring/brands) to track alongside prompts
+- Run a scan and review [sources](/core-features/analysis/sources) and [citations](/core-features/analysis/citations)
+- Use [playbooks](/playbooks/overview) to turn prompt insights into actions

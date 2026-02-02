@@ -1,0 +1,8 @@
+/* Larger logo in navbar - adjust the 48px value as needed */
+.nav-logo img,
+[class*="nav-logo"] img {
+  height: 190px !important;
+  max-height: 190px !important;
+  width: auto !important;
+  object-fit: contain;
+}

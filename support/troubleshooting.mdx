@@ -1,0 +1,61 @@
+---
+title: "Troubleshooting"
+description: "Common issues and what to check"
+---
+
+## No visibility
+
+**Symptom:** Your brand doesn't appear in scan results for prompts where you'd expect to see it.
+
+**What to check:**
+- **Brand variants** — Did you add all spellings? "Pierview" vs "Pierview AI" vs "Pier View"
+- **Prompt fit** — Is the prompt too broad or unrelated to your category?
+- **Model/platform** — Try another model (e.g., Perplexity vs ChatGPT); visibility varies
+- **Timing** — AI outputs change. Run another scan to confirm
+- **Baseline** — You may have zero visibility today; use this as your starting point for [optimization](/core-features/actions/optimization)
+
+## Conflicting mentions
+
+**Symptom:** Sentiment or mentions seem inconsistent across scans or prompts.
+
+**What to check:**
+- **Sample size** — Few prompts = noisier results. Add more prompts for stability
+- **Context** — Same brand can be positive in one answer, neutral in another. We aggregate; check prompt-level detail
+- **Competitor confusion** — Similar names? Add clear variants and review attribution
+- **Rescan** — Run again; AI responses are non-deterministic
+
+## Missing citations
+
+**Symptom:** You're mentioned but rarely (or never) cited as a source.
+
+**What to check:**
+- **Source gaps** — See [Understanding Sources](/core-features/analysis/sources). Which domains does AI cite? Are you on them?
+- **Site content** — Do you have citeable pages? "Best X," comparisons, FAQs. See [Citations](/core-features/analysis/citations)
+- **Directories** — G2, Capterra, etc. — are you listed? Do you have reviews?
+- **Playbook** — Run [Create a Best X page](/playbooks/best-x-page-citations)
+
+## Weird sentiment
+
+**Symptom:** Sentiment scores seem off — e.g., you expect positive but see neutral or negative.
+
+**What to check:**
+- **Prompt-level view** — Drill into individual prompts; averages can hide nuance
+- **Source of sentiment** — Is it from reviews, press, or AI's own wording? Different sources carry different weight
+- **Sample size** — Few mentions = less reliable sentiment
+- **Rescan** — Sentiment can shift with model updates or query phrasing
+
+## Prompt mismatch
+
+**Symptom:** Results don't match what you see when you manually query the same prompt.
+
+**What to check:**
+- **Exact prompt** — We send the prompt as defined. Typos or extra spaces change results
+- **Model version** — Models update. Our scans use current versions; manual tests may differ
+- **Non-determinism** — AI doesn't return identical answers. Run multiple scans for consistency
+- **Regional/session effects** — Some models vary by region or session; we standardize where possible
+
+## Next steps
+
+- See [FAQ](/support/faq) for more Q&A
+- Check [Glossary](/support/glossary) for term definitions
+- Review [Key Terminology](/introduction/key-terminology) for quick reference
