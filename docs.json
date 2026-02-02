@@ -4,9 +4,9 @@
   "name": "Pierview AI",
   "description": "AI visibility platform for brands",
   "colors": {
-    "primary": "#7C3AED",
-    "light": "#7C3AED",
-    "dark": "#7C3AED"
+    "primary": "#2b7fff",
+    "light": "#2b7fff",
+    "dark": "#2b7fff"
   },
   "favicon": "/favicon.svg",
   "navigation": {
