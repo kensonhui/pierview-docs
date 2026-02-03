@@ -8,7 +8,7 @@
     "light": "#2b7fff",
     "dark": "#2b7fff"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "styling": {
     "eyebrows": "section",
     "latex": true
