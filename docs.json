@@ -63,10 +63,7 @@
             "group": "Help",
             "pages": [
               "support/troubleshooting",
-              "support/faq",
-              "support/glossary",
-              "support/security-privacy",
-              "support/changelog"
+              "support/faq"
             ]
           }
         ]
