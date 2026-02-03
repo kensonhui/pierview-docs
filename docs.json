@@ -9,67 +9,79 @@
     "dark": "#2b7fff"
   },
   "favicon": "/favicon.svg",
+  "styling": {
+    "eyebrows": "section",
+    "latex": true
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
+        "icon": "book-open",
         "groups": [
           {
-            "group": "Introduction",
+            "group": "Get Started",
+            "icon": "rocket",
             "pages": [
               "index",
-              "introduction/what-is-pierview",
-              "introduction/key-terminology"
+              "quickstart",
+              {
+                "group": "Main metrics",
+                "expanded": false,
+                "pages": [
+                  "main-metrics/visibility",
+                  "main-metrics/sentiment",
+                  "main-metrics/position"
+                ]
+              }
             ]
           },
           {
-            "group": "Quickstart",
-            "pages": [
-              "quickstart"
-            ]
-          },
-          {
-            "group": "Monitoring",
+            "group": "Set up Your Project",
+            "icon": "wrench",
             "pages": [
               "core-features/monitoring/prompts",
-              "core-features/monitoring/brands"
+              "core-features/monitoring/brands",
+              "playbooks/outrank-competitor-perplexity"
             ]
           },
           {
-            "group": "Analysis",
+            "group": "Interpret Your Results",
+            "icon": "chart-line",
             "pages": [
-              "core-features/analysis/sources",
-              "core-features/analysis/citations"
+              "core-features/analysis/citations",
+              "core-features/actions/reports",
+              "core-features/analysis/sources"
             ]
           },
           {
-            "group": "Actions",
+            "group": "Take Action",
+            "icon": "lightbulb",
             "pages": [
-              "core-features/actions/optimization",
-              "core-features/actions/reports"
+              "core-features/actions/optimization"
             ]
           },
           {
-            "group": "Playbooks",
+            "group": "Misc",
+            "icon": "settings",
             "pages": [
+              "essentials/navigation",
               "playbooks/overview",
-              "playbooks/outrank-competitor-perplexity",
-              "playbooks/source-gaps-pr-pitch",
-              "playbooks/best-x-page-citations"
+              "misc/video-library"
             ]
           },
           {
-            "group": "Docs customization",
+            "group": "Integrations",
+            "icon": "plug",
             "pages": [
-              "development",
-              "essentials/settings",
-              "essentials/navigation"
+              "integrations/looker-studio"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Customer API",
+        "icon": "square-terminal",
         "groups": [
           {
             "group": "Overview",

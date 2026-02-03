@@ -1,0 +1,165 @@
+---
+title: Sentiment
+description: How Pierview measures whether AI mentions of your brand are positive, neutral, or negative.
+---
+
+import { Info, CardGroup, Card, Accordion, AccordionItem } from "@mintlify/mdx";
+
+# Sentiment
+
+Sentiment measures the **tone** of AI responses when your brand is mentioned — whether the model frames you as a strong recommendation, a neutral option, or a “maybe don’t.”  
+
+<Info>
+Visibility tells you *if* you show up. Sentiment tells you *what kind of reputation you’re building while you’re there*.
+</Info>
+
+![Sentiment dashboard](/images/docs/sentiment-dashboard.png)
+
+---
+
+## What this metric answers
+
+Use Sentiment to answer:
+
+- **Are we being recommended or just referenced?**
+- **Do competitors get “trusted” language while we get “okay for beginners”?**
+- **Did a launch, review wave, or PR event change how AI describes us?**
+- **Which prompts produce negative framing so we can fix the narrative?**
+
+---
+
+## How Pierview determines sentiment
+
+Pierview analyzes the language used around your brand mention and classifies each response as:
+
+- **Positive** — recommendations, praise, favorable comparisons  
+- **Neutral** — factual mentions without clear judgment  
+- **Negative** — criticism, warnings, unfavorable comparisons  
+
+Pierview looks for:
+- **Tone words** (“trusted”, “reliable”, “outdated”, “risky”)  
+- **Comparative framing** (“better than”, “worse than”, “not as good as”)  
+- **Context cues** (pricing complaints, limitations, missing features, support issues)
+
+<Info>
+Sentiment isn’t about emotion — it’s about *positioning*. “Best for enterprises” and “fine for small teams” can both be positive, but they signal different market perception.
+</Info>
+
+---
+
+## Score vs classification
+
+Depending on your product setup, Pierview can show sentiment as:
+
+- **A 0–100 score** (overall tone strength)  
+- **A distribution** (what % of mentions are positive / neutral / negative)
+
+If you’re using a score, a simple mental model is:
+
+<CardGroup cols={3}>
+  <Card title="80–100" icon="circle-check">
+    Strong positive framing. AI tends to recommend you confidently.
+  </Card>
+  <Card title="60–79" icon="minus-circle">
+    Generally positive or neutral. You show up, but language may be cautious.
+  </Card>
+  <Card title="0–59" icon="triangle-exclamation">
+    Risk zone. Mentions skew negative or highlight drawbacks prominently.
+  </Card>
+</CardGroup>
+
+---
+
+## Why sentiment matters
+
+### Brand reputation
+Sentiment influences whether users *trust* what they see:
+- Positive sentiment builds credibility.
+- Neutral sentiment keeps you “in consideration.”
+- Negative sentiment creates drop-off — even if you’re visible.
+
+### Competitive advantage
+If two brands have similar visibility, sentiment often decides who gets picked:
+- Users trust brands described as “reliable”, “secure”, “industry standard.”
+- Brands framed as “buggy”, “hard to use”, or “expensive” get filtered out.
+
+### Strategic insights
+Sentiment helps you:
+- Identify reputation issues early  
+- Understand how positioning is evolving  
+- Track whether messaging improvements are working
+
+---
+
+## What drives sentiment
+
+The biggest sentiment drivers usually come from:
+
+1. **Source narrative** — what high-authority pages say about you  
+2. **Product positioning** — how clearly you explain who you’re for (and who you’re not)  
+3. **Comparisons** — whether you’re framed as “alternative” vs “leader”  
+4. **Consistency** — mismatched messaging across your site, directories, and reviews
+
+---
+
+## How to improve sentiment (actionable checklist)
+
+### Fast wins (this week)
+- Fix your **positioning sentences** (homepage + “What is Pierview” style page):
+  - “Best for…” / “Not ideal if…” clarity reduces negative framing
+- Add an **Objections FAQ**:
+  - pricing, setup time, accuracy, integrations, support  
+- Update directory profiles (G2-style pages, partner listings) to match your positioning
+
+### Compounding wins (this month)
+- Create a **comparison page**: “Pierview vs {competitor}” with fair criteria  
+- Publish a **trust asset**:
+  - methodology page, how data is collected, limitations explained clearly  
+- Target the sources that drive negative language:
+  - outdated reviews, forum threads, missing product info on high-used sources
+
+<Info>
+Best rule: don’t try to “spin” sentiment. Replace uncertainty with clarity and evidence. AI models copy the tone of the sources they trust.
+</Info>
+
+---
+
+## Troubleshooting: when sentiment looks weird
+
+<Accordion>
+  <AccordionItem title="We have high sentiment but low conversions">
+    - Check **Position/Average Ranking** (you might be positively mentioned, but not recommended first)  
+    - Check **prompt intent** (wrong prompts can create “positive but irrelevant” mentions)
+  </AccordionItem>
+
+  <AccordionItem title="Sentiment dropped suddenly">
+    - Look for a new high-used source (article, Reddit post, review page)  
+    - Check if a competitor’s messaging changed and you became the “comparison loser”
+  </AccordionItem>
+
+  <AccordionItem title="Sentiment is neutral everywhere">
+    - You may be present but not differentiated  
+    - Add: clear differentiators, proof points, and “best for” language on key pages
+  </AccordionItem>
+
+  <AccordionItem title="Sentiment is negative on only a few prompts">
+    - Those prompts likely map to a specific objection (pricing, complexity, missing feature)  
+    - Build one targeted page that addresses that objection directly
+  </AccordionItem>
+</Accordion>
+
+---
+
+## Related metrics
+
+<CardGroup cols={3}>
+  <Card title="Visibility" icon="eye" href="/main-metrics/visibility">
+    How often your brand is mentioned.
+  </Card>
+  <Card title="Citations" icon="link" href="/core-features/analysis/citations">
+    Whether your mentions are backed by credible sources.
+  </Card>
+  <Card title="Understanding Sources" icon="globe" href="/core-features/analysis/sources">
+    Which websites shape the sentiment narrative.
+  </Card>
+</CardGroup>

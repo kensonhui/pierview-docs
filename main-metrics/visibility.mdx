@@ -1,0 +1,152 @@
+---
+title: Visibility
+description: How Pierview measures how often your brand is mentioned in AI answers.
+---
+
+import { Info, CardGroup, Card } from "@mintlify/mdx";
+
+
+
+<Info>
+Think of Visibility as your “AI shelf space.” If buyers ask an AI for recommendations and you’re not mentioned, you’re not in the aisle.
+</Info>
+
+![Visibility dashboard](/images/visibility-dashboard-updated.png)
+
+---
+
+## What this metric answers
+
+Use Visibility to answer:
+
+- **Do we appear in high-intent AI answers?**
+- **Which prompt topics do we win (see) vs lose (don’t show up)?**
+- **Are competitors consistently mentioned instead of us?**
+- **Did content, PR, or a product launch change our presence over time?**
+
+---
+
+## How Visibility is calculated
+
+At a basic level:
+
+<div style={{ textAlign: "center", margin: "1.5rem 0" }}>
+  $$Visibility = \frac{\text{Mentions}}{\text{Total Chats}} \times 100$$
+</div>
+
+
+Where:
+- **Mentions** = number of AI responses where your brand appears
+- **TotalChats** = total AI responses collected for your tracked prompts during the selected timeframe
+
+<Info>
+Visibility is calculated over your selected time range (e.g., last 7 days). Changing the range changes the denominator—so compare apples to apples.
+</Info>
+
+---
+
+## What counts as a “mention”?
+
+Pierview counts a mention when:
+
+- Your brand name appears in the answer text (including accepted variants)
+- The mention is about *your brand* (not a different company with a similar name)
+
+Pierview does *not* count a mention when:
+
+- Your brand only appears in a cited URL, but not in the answer text (that’s **Source Visibility**, not Brand Visibility)
+- Your brand appears as part of a generic word (common with ambiguous brand names)
+
+### Edge cases and examples
+
+- **Ambiguous names:** If your brand name is a common word, add variants (domain, product name).
+    - **List answers:** If the AI returns a list of tools and includes you once, that counts as a mention.
+- **Repeated mentions:** Multiple mentions in the same answer still count as one “mentioned in this chat.”
+---
+
+## How to interpret Visibility
+
+Here’s a practical rubric (adjust expectations by category maturity):
+
+- **0–5%**: You’re mostly invisible → biggest upside.
+- **5–20%**: You show up sometimes → not yet a default pick.
+- **20–40%**: You’re competitive → consistently in the conversation.
+- **40%+**: You’re a category staple → maintain and protect.
+
+<Info>
+If Visibility is high but conversions aren’t improving, check **Sentiment** and **Position/Average Ranking**. Being mentioned isn’t the same as being recommended.
+</Info>
+
+---
+
+## Why Visibility matters
+
+Visibility is a leading indicator for:
+
+- **Brand discovery:** AI is now a discovery channel, not just a chat tool.
+- **Competitive share:** If you’re not mentioned, someone else is.
+- **Market positioning:** Visibility tends to correlate with category authority and content presence.
+
+---
+
+## What drives Visibility (the levers)
+
+The biggest contributors:
+
+1. **Prompt fit:** Are you tracking prompts where you *should* show up?
+2. **Source presence:** Are you included on the websites AI uses to answer?
+3. **Content coverage:** Do you have pages that directly address the prompt intent?
+4. **Authority signals:** Do credible third parties mention you (directories, reviews, editorial)?
+
+---
+
+## How to improve Visibility (actionable checklist)
+
+### Fast wins (today)
+- Add **comparison prompts** (“X vs Y”) to force competitive context.
+- Add brand **variants** and your **domain** to avoid missed mentions.
+- Identify the top 5 prompts with the lowest visibility and rewrite them to be more specific.
+
+### Compounding wins (this month)
+- Create “AI-citeable” content formats:
+  - **Best X** pages with clear criteria
+  - **Alternatives** pages
+  - **Comparisons** (X vs Y)
+  - **FAQs** that answer common prompt phrasing
+- Target source gaps:
+  - Get listed where competitors are listed (directories)
+  - Pitch editorial sources that dominate your category
+  - Participate in communities that models rely on (UGC)
+
+---
+
+## Troubleshooting: when Visibility looks wrong
+
+### Visibility is 0%
+
+- Prompts might be too broad  
+- Brand variants missing
+- Your category keywords may not match prompt intent
+- Try adding 5 more high-intent prompts and rerun
+
+### We're cited but not mentioned
+
+- Your content is being used as a source  
+- But your brand is not “named” in the response  
+- Fix by adding clearer brand attribution on-page (about section, product naming, consistent mentions)
+
+---
+
+## Related metrics
+
+<CardGroup cols={3}>
+  <Card title="Sentiment" icon="heart" href="/main-metrics/sentiment">
+    How the AI describes your brand when you’re mentioned.
+  </Card>
+  <Card title="Citations" icon="link" href="/core-features/analysis/citations">
+    How often your brand is backed by explicit sources.
+  </Card>
+  <Card title="Understanding Sources" icon="globe" href="/core-features/analysis/sources">
+    Which websites shape answers and where you can create leverage.
+  </Card>
+</CardGroup> 

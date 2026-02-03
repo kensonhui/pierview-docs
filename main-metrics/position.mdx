@@ -1,0 +1,174 @@
+---
+title: Position
+description: Position measures **where your brand ranks when it appears in AI-generated answers** — first, second, third, etc.
+---
+
+import { Info, CardGroup, Card } from "@mintlify/mdx";
+
+
+
+
+
+<Info>
+Visibility answers: “Do we show up?”  
+Position answers: “Do we show up *early enough to matter*?”
+</Info>
+
+![Position dashboard](/images/position-dashboard.png)
+
+---
+
+## Overview
+
+AI answers often mention multiple brands. When you’re **mentioned first**, you’re more likely to be remembered, clicked, and chosen — especially in list-style recommendations (“Top tools for…”, “Best options for…”).
+
+Position helps you track:
+- **Order of mention** in list-style answers
+- Whether you’re framed as a **top pick** vs “also-ran”
+- How often you **lead vs follow** competitors
+
+---
+
+## How position is measured
+
+Pierview assigns a **rank** to each brand mention inside an answer:
+
+- **Rank 1** = first brand mentioned
+- **Rank 2** = second brand mentioned
+- etc.
+
+Then Pierview aggregates across your selected timeframe:
+
+### Average Position
+
+$$
+AvgPosition = \frac{\sum Rank_{brand}}{N}
+$$
+
+Where:
+- $Rank_{brand}$ = your rank in a response where you’re mentioned
+- $N$ = number of responses where your brand appears
+
+<Info>
+Position is calculated only on responses where you appear. If you don’t appear, that’s a Visibility problem — not a Position problem.
+</Info>
+
+---
+
+## How to interpret position
+
+A simple rubric:
+
+- **1.0 – 1.5**: You’re often the default recommendation 🏆  
+- **1.6 – 2.5**: You’re competitive (in the top group)  
+- **2.6 – 4.0**: You show up, but late (people may not reach you)  
+- **4.0+**: You’re “honorable mention” territory  
+
+<CardGroup cols={2}>
+  <Card title="Good sign" icon="circle-check">
+    Your position improves over time on high-intent prompts (e.g., “best X”, “X vs Y”).
+  </Card>
+  <Card title="Bad sign" icon="triangle-exclamation">
+    You show up, but competitors consistently appear before you — even when your product fits the prompt.
+  </Card>
+</CardGroup>
+
+---
+
+## Why position matters
+
+### Brand authority
+A lower (better) position suggests AI models treat you as:
+- A **more authoritative** option for the topic
+- A **go-to** choice in your category
+- A strong match for the user intent
+
+### Competitive advantage
+Better position usually means:
+- Users see you first → higher selection probability
+- Your brand framing controls the comparison
+- Competitors become the “alternatives” (not you)
+
+### Topic relevance
+Position varies by topic and intent. This helps you find:
+- Topics where you’re already a leader
+- Topics where your messaging/content needs work
+- Prompt clusters where competitors dominate first mention
+
+---
+
+## What drives position
+
+Position is mostly influenced by:
+
+1. **Prompt intent fit**  
+   If the prompt maps to a use case you own, you tend to rank earlier.
+
+2. **Source strength**  
+   AI models often pull lists and comparisons from authoritative sources. If those sources lead with competitors, you’ll show up later.
+
+3. **Clarity of differentiation**  
+   Brands with clear “best for X” positioning usually rank earlier.
+
+4. **Comparison availability**  
+   If there are many “X vs Y” pages about competitors, they get “first mention momentum.”
+
+---
+
+## How to improve position (action checklist)
+
+### Fast wins (this week)
+- Add more **high-intent prompts**:
+  - “best [category] for [use case]”
+  - “[competitor] vs [your brand]”
+  - “alternatives to [competitor]”
+- Tighten your **positioning sentence** everywhere:
+  - “Pierview is best for ___ teams who want ___ outcome.”
+- Create a short **comparison page** for your top competitor.
+
+### Compounding wins (this month)
+- Build content formats that commonly produce “ranked lists” in AI answers:
+  - “Best X” pages with criteria
+  - “Alternatives to X” pages
+  - Comparisons with structured sections (pricing, features, ideal user)
+- Improve your presence on the **sources** AI relies on:
+  - directories, review sites, editorial roundups, communities
+
+<Info>
+If you want to win position, don’t just “exist on the web” — exist on the *pages that define the ranking*.
+</Info>
+
+---
+
+## Troubleshooting
+
+### We have good visibility but poor position
+    - You’re being mentioned, but not framed as a top recommendation  
+    - Check whether competitors are described with stronger “best for” language  
+    - Improve positioning and comparison content, then track position on the same prompt set
+
+### Position looks inconsistent across prompts
+    - That’s normal: some topics naturally favor competitors  
+    - Group prompts into clusters (use cases) and optimize one cluster at a time
+
+### We're ranked late even when we should be a top fit
+
+- Look at the sources driving those answers
+- If the top-used sources are missing you, you’ll rarely rank early  
+- Fix source presence first, then re-check position
+
+---
+
+## Related metrics
+
+<CardGroup cols={3}>
+  <Card title="Visibility" icon="eye" href="/main-metrics/visibility">
+    How often you show up in AI answers.
+  </Card>
+  <Card title="Sentiment" icon="heart" href="/main-metrics/sentiment">
+    How AI describes you when you’re mentioned.
+  </Card>
+  <Card title="Citations" icon="link" href="/core-features/analysis/citations">
+    Whether your mentions are backed by credible sources.
+  </Card>
+</CardGroup>

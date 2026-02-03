@@ -6,3 +6,11 @@
   width: auto !important;
   object-fit: contain;
 }
+
+/* Make content images fit (e.g. visibility dashboard) */
+article img,
+[role="main"] img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
