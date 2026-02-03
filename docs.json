@@ -53,43 +53,6 @@
               "core-features/actions/reports",
               "core-features/analysis/sources"
             ]
-          },
-          {
-            "group": "Take Action",
-            "icon": "lightbulb",
-            "pages": [
-              "core-features/actions/optimization"
-            ]
-          },
-          {
-            "group": "Misc",
-            "icon": "settings",
-            "pages": [
-              "essentials/navigation",
-              "playbooks/overview",
-              "misc/video-library"
-            ]
-          },
-          {
-            "group": "Integrations",
-            "icon": "plug",
-            "pages": [
-              "integrations/looker-studio"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Customer API",
-        "icon": "square-terminal",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": [
-              "api-reference/introduction",
-              "api-reference/authentication",
-              "api-reference/endpoints"
-            ]
           }
         ]
       },
@@ -112,8 +75,8 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "anchor": "Blog",
+          "href": "https://pierview.ai/blog",
           "icon": "book-open-cover"
         }
       ]
