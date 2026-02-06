@@ -93,7 +93,7 @@
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://app.pierview.ai"
+      "href": "https://pierview.ai/dashboard"
     }
   },
   "contextual": {
