@@ -81,7 +81,8 @@
   },
   "logo": {
     "light": "/logo/pierview-icon-updated.png",
-    "dark": "/logo/pierview-icon-updated.png"
+    "dark": "/logo/pierview-icon-updated.png",
+    "href": "https://pierview.ai"
   },
   "navbar": {
     "links": [
