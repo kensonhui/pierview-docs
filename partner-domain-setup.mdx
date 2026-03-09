@@ -1,0 +1,127 @@
+---
+title: "Partner Domain Setup"
+description: "How to configure your custom domain to work with your white-label portal"
+---
+
+## Overview
+
+As a white-label partner, you can point your own domain to the Pierview platform so your customers see your branding instead of Pierview's. This guide covers how to set up your domain's DNS and configure redirects on your homepage.
+
+## Prerequisites
+
+- An active white-label partner account with a custom domain registered (e.g. `app.partner.com`)
+- Access to your domain's DNS settings
+
+## Step 1: Point Your Domain to Pierview
+
+Add a **CNAME** record in your DNS provider that points your subdomain to the Pierview platform:
+
+| Type  | Name  | Value                       |
+| ----- | ----- | --------------------------- |
+| CNAME | `app` | `PROVIDED_BY_PIERVIEW_TEAM` |
+
+<Note>
+  Replace `app` with whatever subdomain you registered as your white-label
+  domain (e.g. `seo`, `dashboard`, etc.).
+</Note>
+
+After adding the record, allow up to 24 hours for DNS propagation, though it usually takes a few minutes.
+
+## Step 2: Redirect Your Homepage
+
+Your main website (e.g. `partner.com`) likely has its own homepage. To send users to your white-label portal, add a redirect or link on your site.
+
+### Option A: Full-Page Redirect
+
+If you want `partner.com` to go straight to your portal, add a redirect in your hosting provider or web server:
+
+```
+partner.com → https://app.partner.com
+```
+
+Most hosting providers (Vercel, Netlify, Cloudflare Pages, etc.) support redirect rules. For example, in a `_redirects` file:
+
+```text
+/ https://app.partner.com 301
+```
+
+Or in a `vercel.json`:
+
+```json
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://app.partner.com",
+      "permanent": true
+    }
+  ]
+}
+```
+
+### Option B: Link from Your Website
+
+Alternatively, add a "Sign In" or "Dashboard" link on your existing website that points to your white-label domain:
+
+```html
+<a href="https://app.partner.com">Sign in to Dashboard</a>
+```
+
+### Option C: Direct Sign In / Sign Up Links
+
+If you want to skip the portal landing page and send users straight to the authentication forms, use these paths:
+
+```html
+<a href="https://app.partner.com/new-sign-in">Sign In</a>
+<a href="https://app.partner.com/new-sign-up">Sign Up</a>
+```
+
+These pages are fully branded with your partner branding and will redirect users to the dashboard after authentication.
+
+## Step 3: Set Up the Welcome Crawl
+
+The welcome crawl lets your customers instantly preview their AI SEO score before signing up. You can link to it directly from your website or marketing materials.
+
+The URL format is:
+
+```
+https://app.partner.com/welcome?url=https://customer-website.com
+```
+
+### Embedding in Your Website
+
+Add a simple form on your site that sends visitors to the welcome crawl:
+
+```html
+<form action="https://app.partner.com/welcome" method="GET">
+  <label for="url">Enter your website URL:</label>
+  <input
+    type="text"
+    id="url"
+    name="url"
+    placeholder="https://example.com"
+    required
+  />
+  <button type="submit">Analyze My Site</button>
+</form>
+```
+
+When a customer submits the form, they'll be taken to your branded welcome crawl page where they can see their AI SEO score and sign up through your portal.
+
+### Sharing Direct Links
+
+You can also share pre-filled crawl links in emails, ads, or social posts:
+
+```
+https://app.partner.com/welcome?url=https://prospect-site.com
+```
+
+The crawl page will show your partner branding and prompt the user to sign up through your portal.
+
+## Verification
+
+Once everything is set up, verify by:
+
+1. Visiting `https://app.partner.com` - you should see your branded sign-in page
+2. Visiting `https://app.partner.com/welcome?url=https://example.com` - you should see the welcome crawl with your branding (no Pierview navbar)
+3. Clicking "Sign up" should take the user to your branded sign-up flow

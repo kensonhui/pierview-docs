@@ -53,6 +53,20 @@
               "core-features/actions/reports",
               "core-features/analysis/sources"
             ]
+          },
+          {
+            "group": "Integrations",
+            "icon": "plug",
+            "pages": [
+              "framer-integration"
+            ]
+          },
+          {
+            "group": "White-Label Partners",
+            "icon": "building",
+            "pages": [
+              "partner-domain-setup"
+            ]
           }
         ]
       },

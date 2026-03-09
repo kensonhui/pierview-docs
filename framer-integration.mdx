@@ -1,0 +1,69 @@
+---
+title: "Framer CMS Integration"
+description: "Automatically publish AI-generated content to your Framer CMS"
+---
+
+## Overview
+
+The Framer CMS integration lets you automatically generate and publish SEO-optimized content directly to your Framer website. Set up a content schedule, connect your Framer project, and new articles will appear in your CMS collection ready for review.
+
+## Step 1: Get Your Framer API Key
+
+1. Head to Framer and open your site's settings page by clicking the **gear icon** in the top-right corner.
+
+<Frame>
+  <img src="/images/framer/framer-settings.png" alt="Framer settings gear icon" />
+</Frame>
+
+2. Scroll down in the general settings until you see **API Keys**. Name your key `Pierview`, then copy the token.
+
+<Frame>
+  <img src="/images/framer/framer-api-key.png" alt="Framer API key generation" />
+</Frame>
+
+<Warning>
+  Don't close the API token dialog until you've finished all the steps below — you'll need to paste it into Pierview.
+</Warning>
+
+## Step 2: Set Up Auto-Publishing in Pierview
+
+1. Head to Pierview, then go to **Content Creation**. You'll see an **Auto-Publish** box to the right of the content creation area. You can also visit this page directly from the sidebar.
+
+2. Turn on auto-publishing, then choose the days you want content to be created. We recommend **once or twice a week**.
+
+<Frame>
+  <img src="/images/framer/pierview-schedule.png" alt="Auto-publish schedule settings" />
+</Frame>
+
+## Step 3: Connect Pierview to Framer
+
+1. Go back to the tab where you have the Framer API token and **paste it** into the API Token field in Pierview.
+
+2. Copy the **URL of the Framer page** you're on and paste that in as the Project URL.
+
+3. Select the **CMS collection** in Framer where you want content drafts to be exported.
+
+4. Map the **Title** and **Content** fields — these should be defaulted for you.
+
+## You're Connected!
+
+Any content scheduled for generation will automatically appear in your Framer CMS as a draft, where you can review it and publish it on your site.
+
+You can also export content on demand — go to any content generation and click **"Publish"** in the top-right sidebar to export it directly to Framer.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Articles not appearing in Framer">
+    - Verify your API key is correct and has not been revoked
+    - Check that the Project URL matches your Framer project
+    - Ensure the field mappings (Title, Content) match your Framer collection fields
+    - Check that the integration is enabled (toggle is on)
+  </Accordion>
+  <Accordion title="Content is showing as plain text instead of formatted">
+    Make sure your Content field in Framer is set to **Formatted Text**, not Plain Text. The integration converts markdown to HTML, which Framer renders correctly in Formatted Text fields.
+  </Accordion>
+  <Accordion title="Duplicate slug errors">
+    The integration automatically handles duplicate slugs by appending a number (e.g. `my-article-2`). If you're seeing errors, check that your Slug field name mapping is correct.
+  </Accordion>
+</AccordionGroup>
