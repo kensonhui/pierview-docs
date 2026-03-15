@@ -1,0 +1,174 @@
+---
+title: "MCP Server"
+description: "Connect AI coding tools to your Pierview data via the Model Context Protocol"
+---
+
+<Info>
+  **Beta** — The Pierview MCP server is currently in beta. Tool names, parameters, and response formats may change as we iterate. We'll do our best to communicate breaking changes in advance.
+</Info>
+
+## Overview
+
+The Pierview MCP server lets AI tools like Claude Desktop, Claude Code, and Cursor query your AI visibility data directly. Ask questions about your citations, key metrics, and competitor mentions without leaving your workflow.
+
+## Prerequisites
+
+- A [Pierview](https://pierview.ai) account with an active project
+
+## Setup
+
+<Tabs>
+  <Tab title="Claude Desktop">
+    <Steps>
+      <Step title="Open Claude Desktop settings">
+        Go to **Claude Desktop** > **Customize** > **Connectors** > **+** > **Add custom connector**.
+      </Step>
+      <Step title="Add the MCP server">
+        Add the following details as prompted:
+        - Name: Pierview
+        - Remote MCP Server URL: https://mcp.pierview.ai
+        <Frame caption="Claude Desktop MCP connector">
+          <img src="/images/mcp/claude-connector.png" alt="Claude Desktop MCP connector" />
+        </Frame>
+      </Step>
+      <Step title="Authenticate">
+        Click the Connect button, follow the authentication steps which will request access to your Pierview data on behalf of Claude.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Claude Code">
+    <Steps>
+      <Step title="Add the MCP server">
+        Run the following command in your terminal:
+        ```bash
+        claude mcp add pierview --transport http https://mcp.pierview.ai
+        ```
+      </Step>
+      <Step title="Start Claude Code">
+        Run `claude` in your terminal. You will be prompted to sign in with your Pierview account on first use.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Cursor">
+    <Steps>
+      <Step title="Open Cursor settings">
+        Go to **Cursor** > **Settings** > **MCP**.
+      </Step>
+      <Step title="Add the MCP server">
+        Click **Add new MCP server** and enter:
+
+        - **Name**: `pierview`
+        - **Type**: `streamable-http`
+        - **URL**: `https://mcp.pierview.ai/`
+      </Step>
+      <Step title="Authenticate">
+        Open the Composer with an MCP-capable model. You will be prompted to sign in with your Pierview account on first use.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Available Tools
+
+All data tools accept an optional `organizationId` parameter. If omitted, your default organization is used. Call `list_organizations` first to see your available organizations.
+
+### `list_organizations`
+
+List all organizations you have access to. Call this first to discover available organization IDs.
+
+**Parameters:** None
+
+**Returns:** Array of organizations with `organizationId`, `organizationName`, `workspaceName`, and `role`.
+
+---
+
+### `get_key_metrics`
+
+Get mention rate, average ranking, and share of voice for your organization (14-day rolling average).
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `organizationId` | `number` | No | Organization to query (defaults to your default org) |
+
+**Returns:**
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `mention_rate` | `number \| null` | Percentage of LLM responses that mention your organization |
+| `average_ranking` | `number \| null` | Mean ranking position when mentioned (lower is better) |
+| `share_of_voice` | `number \| null` | Your mentions as a percentage of all competitor mentions |
+
+---
+
+### `get_citations_by_host`
+
+Get top cited hosts with week-over-week metrics and LLM breakdown.
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `limit` | `number` | No | Max hosts to return (default 50, max 500) |
+| `endDate` | `string` | No | End date for WoW comparison in `YYYY-MM-DD` format |
+| `organizationId` | `number` | No | Organization to query |
+
+**Returns:** Cited hosts with total counts, week-over-week deltas, and per-LLM citation breakdowns.
+
+---
+
+### `get_citations_by_page`
+
+Get top cited pages with week-over-week metrics and LLM breakdown.
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `limit` | `number` | No | Max pages to return (default 50, max 500) |
+| `organizationId` | `number` | No | Organization to query |
+
+**Returns:** Cited pages with URL, title, total counts, and per-LLM citation breakdowns.
+
+---
+
+### `get_visibility_timeseries`
+
+Get visibility trends over time by competitor.
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `webSearch` | `boolean` | No | Filter by web search enabled responses (default `true`) |
+| `organizationId` | `number` | No | Organization to query |
+
+**Returns:** Per-competitor time series with daily mention rates.
+
+---
+
+### `get_competitor_llm_breakdown`
+
+Get which LLMs mention which competitors and at what percentage over the last 14 days.
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `webSearch` | `boolean` | No | Filter by web search enabled responses (default `true`) |
+| `organizationId` | `number` | No | Organization to query |
+
+**Returns:** Per-competitor, per-LLM mention percentages with provider and importance metadata.
+
+---
+
+## Example Queries
+
+Once connected, you can ask your AI tool questions like:
+
+- "What are my top cited pages this week?"
+- "What is my current mention rate and share of voice?"
+- "How has my visibility changed over the last two weeks?"
+- "Which LLMs mention my competitors the most?"
+- "Show me citation trends for my different organizations"
