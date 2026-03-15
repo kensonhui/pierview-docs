@@ -58,6 +58,7 @@
             "group": "Integrations",
             "icon": "plug",
             "pages": [
+              "mcp-server",
               "framer-integration"
             ]
           },
