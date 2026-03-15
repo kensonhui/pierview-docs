@@ -4,14 +4,15 @@ description: "Connect AI coding tools to your Pierview data via the Model Contex
 ---
 
 <Info>
-  **Beta** — The Pierview MCP server is currently in beta. Tool names,
-  parameters, and response formats may change as we iterate. We'll do our best
-  to communicate breaking changes in advance.
+  **Beta** — The Pierview MCP server is currently in beta. Exact tool names,
+  parameters, and response formats may change as the feature evolves over time.
 </Info>
 
 ## Overview
 
-The Pierview MCP server lets AI tools like Claude Desktop, Claude Code, and Cursor query your AI visibility data directly. Ask questions about your citations, key metrics, and competitor mentions without leaving your workflow.
+The Pierview MCP server lets AI tools like Claude Desktop and Claude Code query your AI visibility data directly. Ask questions about your citations, key metrics, and competitor mentions without leaving your workflow.
+
+Authentication is secured using OAuth 2.0 Dynamic Client Registration Protocol (RFC7591).
 
 ## Prerequisites
 
@@ -50,7 +51,7 @@ The Pierview MCP server lets AI tools like Claude Desktop, Claude Code, and Curs
         Run `claude` in your terminal. You will be prompted to sign in with your Pierview account on first use.
       </Step>
       <Step title="Authenticate">
-        Run thee ```/mcp``` command in your Claude Code instance. This will allow you to select the pierview mcp server. On authentication, it'll prompt you to login via the browser.
+        Run the ```/mcp``` command in your Claude Code instance. This will allow you to select the pierview mcp server. On authentication, it'll prompt you to login via the browser.
       </Step>
     </Steps>
   </Tab>
