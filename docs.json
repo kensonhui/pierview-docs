@@ -24,7 +24,7 @@
             "icon": "rocket",
             "pages": [
               "index",
-              "quickstart",
+              "introduction/quickstart",
               {
                 "group": "Main metrics",
                 "expanded": false,
@@ -58,8 +58,8 @@
             "group": "Integrations",
             "icon": "plug",
             "pages": [
-              "mcp-server",
-              "framer-integration"
+              "integrations/mcp-server",
+              "integrations/framer-integration"
             ]
           },
           {

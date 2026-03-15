@@ -4,7 +4,9 @@ description: "Connect AI coding tools to your Pierview data via the Model Contex
 ---
 
 <Info>
-  **Beta** — The Pierview MCP server is currently in beta. Tool names, parameters, and response formats may change as we iterate. We'll do our best to communicate breaking changes in advance.
+  **Beta** — The Pierview MCP server is currently in beta. Tool names,
+  parameters, and response formats may change as we iterate. We'll do our best
+  to communicate breaking changes in advance.
 </Info>
 
 ## Overview
@@ -13,7 +15,7 @@ The Pierview MCP server lets AI tools like Claude Desktop, Claude Code, and Curs
 
 ## Prerequisites
 
-- A [Pierview](https://pierview.ai) account with an active project
+- A [Pierview](https://pierview.ai) account with an active subscription
 
 ## Setup
 
@@ -25,8 +27,8 @@ The Pierview MCP server lets AI tools like Claude Desktop, Claude Code, and Curs
       </Step>
       <Step title="Add the MCP server">
         Add the following details as prompted:
-        - Name: Pierview
-        - Remote MCP Server URL: https://mcp.pierview.ai
+        - **Name**: **Pierview**
+        - **Remote MCP Server URL**: **https://mcp.pierview.ai**
         <Frame caption="Claude Desktop MCP connector">
           <img src="/images/mcp/claude-connector.png" alt="Claude Desktop MCP connector" />
         </Frame>
@@ -47,22 +49,8 @@ The Pierview MCP server lets AI tools like Claude Desktop, Claude Code, and Curs
       <Step title="Start Claude Code">
         Run `claude` in your terminal. You will be prompted to sign in with your Pierview account on first use.
       </Step>
-    </Steps>
-  </Tab>
-  <Tab title="Cursor">
-    <Steps>
-      <Step title="Open Cursor settings">
-        Go to **Cursor** > **Settings** > **MCP**.
-      </Step>
-      <Step title="Add the MCP server">
-        Click **Add new MCP server** and enter:
-
-        - **Name**: `pierview`
-        - **Type**: `streamable-http`
-        - **URL**: `https://mcp.pierview.ai/`
-      </Step>
       <Step title="Authenticate">
-        Open the Composer with an MCP-capable model. You will be prompted to sign in with your Pierview account on first use.
+        Run thee ```/mcp``` command in your Claude Code instance. This will allow you to select the pierview mcp server. On authentication, it'll prompt you to login via the browser.
       </Step>
     </Steps>
   </Tab>
@@ -88,17 +76,17 @@ Get mention rate, average ranking, and share of voice for your organization (14-
 
 **Parameters:**
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `organizationId` | `number` | No | Organization to query (defaults to your default org) |
+| Parameter        | Type     | Required | Description                                          |
+| ---------------- | -------- | -------- | ---------------------------------------------------- |
+| `organizationId` | `number` | No       | Organization to query (defaults to your default org) |
 
 **Returns:**
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `mention_rate` | `number \| null` | Percentage of LLM responses that mention your organization |
-| `average_ranking` | `number \| null` | Mean ranking position when mentioned (lower is better) |
-| `share_of_voice` | `number \| null` | Your mentions as a percentage of all competitor mentions |
+| Field             | Type             | Description                                                |
+| ----------------- | ---------------- | ---------------------------------------------------------- |
+| `mention_rate`    | `number \| null` | Percentage of LLM responses that mention your organization |
+| `average_ranking` | `number \| null` | Mean ranking position when mentioned (lower is better)     |
+| `share_of_voice`  | `number \| null` | Your mentions as a percentage of all competitor mentions   |
 
 ---
 
@@ -108,11 +96,11 @@ Get top cited hosts with week-over-week metrics and LLM breakdown.
 
 **Parameters:**
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `limit` | `number` | No | Max hosts to return (default 50, max 500) |
-| `endDate` | `string` | No | End date for WoW comparison in `YYYY-MM-DD` format |
-| `organizationId` | `number` | No | Organization to query |
+| Parameter        | Type     | Required | Description                                        |
+| ---------------- | -------- | -------- | -------------------------------------------------- |
+| `limit`          | `number` | No       | Max hosts to return (default 50, max 500)          |
+| `endDate`        | `string` | No       | End date for WoW comparison in `YYYY-MM-DD` format |
+| `organizationId` | `number` | No       | Organization to query                              |
 
 **Returns:** Cited hosts with total counts, week-over-week deltas, and per-LLM citation breakdowns.
 
@@ -124,10 +112,10 @@ Get top cited pages with week-over-week metrics and LLM breakdown.
 
 **Parameters:**
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `limit` | `number` | No | Max pages to return (default 50, max 500) |
-| `organizationId` | `number` | No | Organization to query |
+| Parameter        | Type     | Required | Description                               |
+| ---------------- | -------- | -------- | ----------------------------------------- |
+| `limit`          | `number` | No       | Max pages to return (default 50, max 500) |
+| `organizationId` | `number` | No       | Organization to query                     |
 
 **Returns:** Cited pages with URL, title, total counts, and per-LLM citation breakdowns.
 
@@ -139,10 +127,10 @@ Get visibility trends over time by competitor.
 
 **Parameters:**
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `webSearch` | `boolean` | No | Filter by web search enabled responses (default `true`) |
-| `organizationId` | `number` | No | Organization to query |
+| Parameter        | Type      | Required | Description                                             |
+| ---------------- | --------- | -------- | ------------------------------------------------------- |
+| `webSearch`      | `boolean` | No       | Filter by web search enabled responses (default `true`) |
+| `organizationId` | `number`  | No       | Organization to query                                   |
 
 **Returns:** Per-competitor time series with daily mention rates.
 
@@ -154,12 +142,12 @@ Get which LLMs mention which competitors and at what percentage over the last 14
 
 **Parameters:**
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| `webSearch` | `boolean` | No | Filter by web search enabled responses (default `true`) |
-| `organizationId` | `number` | No | Organization to query |
+| Parameter        | Type      | Required | Description                                             |
+| ---------------- | --------- | -------- | ------------------------------------------------------- |
+| `webSearch`      | `boolean` | No       | Filter by web search enabled responses (default `true`) |
+| `organizationId` | `number`  | No       | Organization to query                                   |
 
-**Returns:** Per-competitor, per-LLM mention percentages with provider and importance metadata.
+**Returns:** Per-competitor, per-LLM mention percentages with provider metadata.
 
 ---
 
