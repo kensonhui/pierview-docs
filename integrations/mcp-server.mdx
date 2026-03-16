@@ -55,6 +55,76 @@ Authentication is secured using OAuth with OIDC with PKCE.
       </Step>
     </Steps>
   </Tab>
+  <Tab title="Agent SDK">
+    Use [Anthropic's Claude Agent SDK](https://github.com/anthropics/claude-agent-sdk) to build custom AI agents that query your Pierview data programmatically. Requires a Pierview [API key](#api-keys) and an [Anthropic API key](https://console.anthropic.com/).
+    <Steps>
+      <Step title="Activating your API token">
+        Go to your organization settings at https://www.pierview.ai/dashboard/configuration and create an API key. This will be used to authenticate your requests.
+      </Step>
+      <Step title="Install the Agent SDK">
+        ```bash
+        npm install @anthropic-ai/claude-agent-sdk
+        ```
+      </Step>
+      <Step title="Set your Anthropic API key">
+        ```bash
+        export ANTHROPIC_API_KEY="your-anthropic-api-key"
+        ```
+      </Step>
+      <Step title="Run your agent">
+        ```typescript
+        import { query } from "@anthropic-ai/claude-agent-sdk";
+        const prompt = `You are a content strategist analyzing AI search visibility data.
+
+        1. Call list_organizations to find available organizations.
+        2. For the organization found, pull all data:
+           - get_key_metrics
+           - get_citations_by_host
+           - get_citations_by_page
+           - get_visibility_timeseries
+           - get_competitor_llm_breakdown
+        3. Synthesize the data into a content strategy report.`;
+
+        async function main() {
+          for await (const message of query({
+            prompt,
+            options: {
+              mcpServers: {
+                pierview: {
+                  type: "http",
+                  url: "https://mcp.pierview.ai/api-key",
+                  headers: {
+                    Authorization: "Bearer YOUR_PIERVIEW_API_KEY",
+                  },
+                },
+              },
+              allowedTools: ["mcp__pierview__*"],
+            },
+          })) {
+            const msg = message as any;
+
+            if (msg.type === "assistant" && Array.isArray(msg.content)) {
+              for (const block of msg.content) {
+                if (block.type === "text") {
+                  console.log(block.text);
+                } else if (block.type === "tool_use") {
+                  console.log(`[tool] ${block.name}(${JSON.stringify(block.input)})`);
+                }
+              }
+            }
+
+            if (msg.type === "result" && msg.subtype === "success") {
+              console.log(msg.result);
+            }
+          }
+        }
+
+        main().catch(console.error);
+        ```
+      </Step>
+    </Steps>
+
+  </Tab>
 </Tabs>
 
 ## Available Tools
@@ -149,6 +219,94 @@ Get which LLMs mention which competitors and at what percentage over the last 14
 | `organizationId` | `number`  | No       | Organization to query                                   |
 
 **Returns:** Per-competitor, per-LLM mention percentages with provider metadata.
+
+---
+
+## API Keys
+
+API keys let you authenticate with the Pierview MCP server using a Bearer token instead of OAuth. This is useful for server-side integrations, CI/CD pipelines, or any environment where browser-based OAuth isn't practical.
+
+Keys are scoped to your organization and can be created, viewed, and revoked from the Pierview dashboard.
+
+### Creating an API Key
+
+<Steps>
+  <Step title="Open Configuration">
+    Go to your [Pierview dashboard](https://pierview.ai/dashboard/configuration) and select the **API Keys** tab.
+  </Step>
+  <Step title="Create a new key">
+    Click **Create API Key**, enter a descriptive name (e.g. "Production MCP" or "CI Pipeline"), then click **Create**.
+  </Step>
+  <Step title="Copy your key">
+    Your full API key will be displayed once. Copy it and store it securely — you won't be able to see it again.
+
+    The key starts with `pv_` followed by 32 hex characters.
+
+  </Step>
+</Steps>
+
+<Warning>
+  Store your API key in a secure location such as an environment variable or
+  secrets manager. Never commit API keys to source control.
+</Warning>
+
+### Using Your API Key
+
+Pass the key as a Bearer token in the `Authorization` header when connecting to the MCP server.
+
+<Tabs>
+  <Tab title="Claude Code">
+    ```bash
+    claude mcp add pierview --transport http https://mcp.pierview.ai/mcp \
+      --header "Authorization: Bearer YOUR_API_KEY"
+    ```
+  </Tab>
+  <Tab title="Claude Desktop">
+    In your Claude Desktop configuration file (`claude_desktop_config.json`):
+
+    ```json
+    {
+      "mcpServers": {
+        "pierview": {
+          "url": "https://mcp.pierview.ai/mcp",
+          "headers": {
+            "Authorization": "Bearer YOUR_API_KEY"
+          }
+        }
+      }
+    }
+    ```
+
+  </Tab>
+  <Tab title="Cursor">
+    In your Cursor MCP settings (`.cursor/mcp.json`):
+
+    ```json
+    {
+      "mcpServers": {
+        "pierview": {
+          "url": "https://mcp.pierview.ai/mcp",
+          "headers": {
+            "Authorization": "Bearer YOUR_API_KEY"
+          }
+        }
+      }
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Revoking a Key
+
+To revoke an API key, go to the **API Keys** tab in [Configuration](https://pierview.ai/dashboard/configuration) and click the trash icon next to the key you want to disable. Revoked keys are immediately rejected by the server.
+
+### Security
+
+- API keys are hashed before storage — Pierview never stores your plaintext key
+- Each key is scoped to a single organization
+- Revoked keys cannot be re-activated; create a new key if needed
+- Rotate keys periodically as a best practice
 
 ---
 
