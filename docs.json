@@ -59,7 +59,8 @@
             "icon": "plug",
             "pages": [
               "integrations/mcp-server",
-              "integrations/framer-integration"
+              "integrations/framer-integration",
+              "integrations/vercel-integration"
             ]
           },
           {

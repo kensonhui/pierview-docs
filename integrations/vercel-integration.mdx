@@ -1,0 +1,80 @@
+---
+title: "Vercel Integration"
+description: "Detect AI agent visits to your website using Vercel server logs"
+---
+
+## Overview
+
+AI agents like ChatGPT, Perplexity, Claude, and Gemini visit your website via server-side requests — they don't execute JavaScript, so they're invisible to traditional client-side analytics. The Vercel integration analyzes your production server logs to detect these visits automatically.
+
+Once connected, Pierview creates a log drain on your Vercel project. Vercel streams request logs to Pierview in real time, where we identify known AI agent User-Agents and surface the data in your Traffic Analysis dashboard.
+
+### Detected AI Agents
+
+| Provider | Agents Detected |
+|----------|----------------|
+| OpenAI | ChatGPT-User, GPTBot, OAI-SearchBot |
+| Perplexity | PerplexityBot, Perplexity-User |
+| Anthropic | ClaudeBot, Claude-User, Claude-SearchBot |
+| Google | Google-Extended, Google-CloudVertexBot |
+
+## Step 1: Connect Your Vercel Account
+
+1. In Pierview, go to **Traffic Analysis** from the sidebar.
+
+2. Find the **Vercel Integration** card at the top of the page.
+
+3. Click **Connect Vercel**. You'll be redirected to Vercel to authorize the integration.
+
+4. In Vercel, select the **scope** (personal account or team) and the **projects** you want to monitor, then click **Add Integration**.
+
+5. You'll be redirected back to Pierview with a success message.
+
+<Info>
+  Pierview automatically creates a log drain on your Vercel project during setup. Only production logs are analyzed — staging and development environments are excluded.
+</Info>
+
+## Step 2: View Agent Traffic
+
+1. Go to **Traffic Analysis** and click the **Agent Traffic** tab in the analytics section.
+
+2. You'll see:
+   - **Agent visits over time** — a line chart showing daily AI agent traffic
+   - **Breakdown by provider** — a pie chart showing which AI platforms visit your site most
+   - **Top pages** — the most frequently visited pages by AI agents
+
+<Warning>
+  It may take a few minutes after connecting for the first data to appear, as Vercel needs to start streaming logs to the new drain.
+</Warning>
+
+## Disconnecting
+
+1. Go to **Traffic Analysis** and find the **Vercel Integration** card.
+
+2. Click **Disconnect**, then confirm in the dialog.
+
+This removes the log drain from your Vercel project and stops all data collection. Your historical agent visit data is preserved and will still be visible in the dashboard.
+
+## Privacy & Data Handling
+
+- Only requests matching known AI agent User-Agent patterns are stored
+- Non-agent traffic is discarded immediately and never stored
+- Access tokens are encrypted at rest using AES-256-GCM
+- You can disconnect and stop data collection at any time
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="No agent data appearing after connecting">
+    - Verify the integration shows **Log Drain Active** on the Vercel Integration card
+    - Wait a few minutes — Vercel log delivery can have a short delay
+    - Ensure your site receives production traffic (staging/dev logs are excluded)
+    - Check that your Vercel project is deployed and receiving requests
+  </Accordion>
+  <Accordion title="'No Log Drain' badge after connecting">
+    Log drain creation may have failed during setup. Try disconnecting and reconnecting the integration. If the issue persists, contact support.
+  </Accordion>
+  <Accordion title="Can I monitor multiple Vercel projects?">
+    The integration currently supports one Vercel connection per Pierview organization. The log drain will capture traffic across all projects in the selected scope.
+  </Accordion>
+</AccordionGroup>
