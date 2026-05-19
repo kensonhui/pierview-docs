@@ -1,0 +1,118 @@
+---
+title: "Perception"
+description: "Understand how AI models describe your brand and how you compare to competitors"
+---
+
+The **Perception** dashboard breaks down sentiment beyond a single score. It shows *which LLMs* are positive or negative about your brand, *which categories* drive that signal, and *what specific language* AI models use.
+
+<Info>
+  Sentiment is the quality layer on top of visibility. If you're visible but perception is negative, you're being mentioned for the wrong reasons.
+</Info>
+
+---
+
+## Sentiment score
+
+Your overall sentiment score is a 0–100 value calculated from extracted perceptions in AI responses:
+
+$$
+\text{Sentiment Score} = \frac{\text{Positive perceptions}}{\text{Positive} + \text{Negative perceptions}} \times 100
+$$
+
+**Score ranges:**
+
+| Range | Meaning |
+|---|---|
+| 70–100 | Positive: AI consistently recommends or praises your brand |
+| 50–69 | Mixed: present in the conversation, but not clearly endorsed |
+| 0–49 | Negative: AI surfaces drawbacks, objections, or warnings |
+
+---
+
+## Sentiment by LLM
+
+Different AI models often have different tones toward the same brand. The per-LLM breakdown shows:
+
+- **Positive %**: share of positive perceptions for that model
+- **Positive count / Negative count**: raw mention volumes
+
+Use this to identify model-specific narratives. A brand can be recommended by Claude but flagged as expensive by ChatGPT. The fix differs per model because the sources each model relies on differ.
+
+---
+
+## Perception categories
+
+Pierview classifies extracted perceptions into 8 categories:
+
+| Category | What it captures |
+|---|---|
+| **Pricing & Value** | Cost, pricing tiers, value for money |
+| **Performance** | Speed, reliability, accuracy |
+| **Usability & Apps** | Ease of use, onboarding, mobile/desktop experience |
+| **Products & Features** | Specific capabilities, integrations, feature gaps |
+| **Support & Service** | Customer support quality, documentation, response time |
+| **Brand & Trust** | Reputation, credibility, brand recognition |
+| **Delivery & Logistics** | Shipping, setup time, fulfillment (e-commerce/SaaS) |
+| **Other Themes** | Anything that doesn't fit the above |
+
+Each category shows a **tone** (positive, negative, neutral, or mixed) based on the distribution of mentions within it. Categories with more data are weighted more heavily.
+
+### How to use category data
+
+A negative score in **Pricing & Value** means AI responses frequently surface cost objections. The fix is content that directly addresses value: comparisons, ROI calculators, pricing FAQs.
+
+A negative score in **Products & Features** often points to a specific missing feature being surfaced repeatedly. Check the extracted facts to see which feature.
+
+---
+
+## Brand strengths and weaknesses
+
+Pierview extracts the specific phrases and attributes being mentioned, then surfaces the top:
+
+- **Strengths**: most frequently cited positive attributes (e.g., "fast onboarding", "best for enterprise")
+- **Weaknesses**: most frequently cited negative attributes (e.g., "limited integrations", "steep learning curve")
+
+Each item shows:
+- How often it appears across responses
+- Which LLM(s) surface it
+- The prompt context it appeared in
+
+This is the most actionable output from the Perception dashboard. If a weakness appears across many prompts and LLMs, it's a signal worth addressing in content.
+
+---
+
+## Competitor sentiment comparison
+
+The competitor panel shows sentiment scores and perception counts for each tracked competitor, side by side with your brand.
+
+For each competitor you see:
+- **Sentiment score** (0–100)
+- **Positive fact count**
+- **Negative fact count**
+
+This reveals whether you're losing on perception even when you appear alongside competitors. If a competitor consistently scores 20 points higher, inspect their extracted strengths. That's the narrative gap to close.
+
+---
+
+## Filtering
+
+The Perception dashboard supports:
+
+- **Time range**: filter to last 7, 14, or 30 days to spot trend changes after a content update or launch
+- **LLM filter**: isolate a single model to understand model-specific behavior
+
+---
+
+## Related
+
+<CardGroup cols={3}>
+  <Card title="Sentiment (metric)" icon="heart" href="/main-metrics/sentiment">
+    How the sentiment score is defined and what drives it.
+  </Card>
+  <Card title="Citations" icon="link" href="/core-features/analysis/citations">
+    Which sources back your brand mentions.
+  </Card>
+  <Card title="Sources" icon="globe" href="/core-features/analysis/sources">
+    Which domains shape how AI talks about you.
+  </Card>
+</CardGroup>

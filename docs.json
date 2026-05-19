@@ -50,6 +50,7 @@
             "icon": "chart-line",
             "pages": [
               "core-features/analysis/citations",
+              "core-features/analysis/perception",
               "core-features/actions/reports",
               "core-features/analysis/sources"
             ]
@@ -64,9 +65,10 @@
             ]
           },
           {
-            "group": "White-Label Partners",
+            "group": "Agency Partners",
             "icon": "building",
             "pages": [
+              "pitch-organizations",
               "partner-domain-setup"
             ]
           }
