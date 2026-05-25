@@ -61,7 +61,8 @@
             "pages": [
               "integrations/mcp-server",
               "integrations/framer-integration",
-              "integrations/vercel-integration"
+              "integrations/vercel-integration",
+              "integrations/wordpress-plugin"
             ]
           },
           {
