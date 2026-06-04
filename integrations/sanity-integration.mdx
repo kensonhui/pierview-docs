@@ -25,7 +25,11 @@ Content is converted from markdown to **Portable Text** so it renders correctly 
   <img src="/images/sanity/sanity-api-token.png" alt="API Tokens page with Add API token button" />
 </Frame>
 
-4. Give the token a name (e.g. `Pierview`) and set the permission level to **Editor**.
+4. Give the token a name (e.g. `Pierview`), select **Editor** under Permissions, then click **Save**.
+
+<Frame>
+  <img src="/images/sanity/sanity-editor-permission.png" alt="Selecting Editor permission when creating a Sanity API token" />
+</Frame>
 
 <Warning>
   The token needs **Editor** (write) access to create documents. Viewer-only tokens will not work.
@@ -35,19 +39,17 @@ Content is converted from markdown to **Portable Text** so it renders correctly 
 
 6. While you're here, note your **Project ID** (shown at the top of the project page at [sanity.io/manage](https://www.sanity.io/manage)) and your **Dataset** name (usually `production`).
 
-## Step 2: Set Up Auto-Publishing in Pierview
-
-1. In Pierview, go to **Content Creation**. You'll see an **Auto-Publish** box on the right side of the content creation area.
-
-2. Turn on auto-publishing, then choose the days you want content to be created. We recommend **once or twice a week**.
-
-## Step 3: Connect Pierview to Sanity
+## Step 2: Connect Pierview to Sanity
 
 The setup is a 3-step wizard: credentials → document type → field mapping.
 
 **Credentials**
 
-1. Select **Sanity** as your CMS integration.
+1. In Pierview, go to [Settings → Integrations → CMS Integrations](https://pierview.ai/dashboard/configuration/integrations) and click **Connect** next to Sanity.
+
+<Frame>
+  <img src="/images/pierview-cms-integrations.png" alt="CMS Integrations page showing Framer and Sanity connect buttons" />
+</Frame>
 
 2. Enter your **Project ID**, **Dataset** (default: `production`), and paste in your **API Token**.
 

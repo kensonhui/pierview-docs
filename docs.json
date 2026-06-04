@@ -59,6 +59,7 @@
             "group": "Integrations",
             "icon": "plug",
             "pages": [
+              "integrations/auto-publishing",
               "integrations/mcp-server",
               "integrations/framer-integration",
               "integrations/sanity-integration",
