@@ -222,6 +222,174 @@ Get which LLMs mention which competitors and at what percentage over the last 14
 
 ---
 
+### `get_missed_prompts`
+
+Recent visibility prompts where competitors appeared in LLM responses but your brand did not. Use this to identify content and topic gaps.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                 |
+| ---------------- | -------- | -------- | ------------------------------------------- |
+| `limit`          | `number` | No       | Max prompts to return (default 25, max 200) |
+| `organizationId` | `number` | No       | Organization to query                       |
+
+**Returns:** Array of missed prompts with the prompt text, which competitors appeared, and associated metadata.
+
+---
+
+### `get_traffic_analytics`
+
+Full website traffic analytics for your organization. Returns total visits, unique visitors, live users, top referrers, traffic sources breakdown, device breakdown, session metrics, bot vs human traffic analysis, UTM campaign analytics, and daily traffic time series.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                     |
+| ---------------- | -------- | -------- | ----------------------------------------------- |
+| `days`           | `number` | No       | Number of days to analyze (default 30, max 365) |
+| `organizationId` | `number` | No       | Organization to query                           |
+
+**Returns:**
+
+| Field             | Type     | Description                                            |
+| ----------------- | -------- | ------------------------------------------------------ |
+| `totalVisits`     | `number` | Total page visits in the period                        |
+| `uniqueVisitors`  | `number` | Unique visitor count                                   |
+| `liveUsers`       | `number` | Currently active users                                 |
+| `topReferrers`    | `array`  | Top referrer domains with visit counts and percentages |
+| `deviceBreakdown` | `object` | Split of mobile / tablet / desktop visits              |
+| `sessionMetrics`  | `object` | Average session duration and bounce rate               |
+| `utmAnalytics`    | `object` | UTM campaign, source, and medium breakdowns            |
+
+---
+
+### `get_traffic_summary`
+
+Quick traffic overview with key metrics only. Use this for a fast snapshot; use `get_traffic_analytics` for the full dataset.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                     |
+| ---------------- | -------- | -------- | ----------------------------------------------- |
+| `days`           | `number` | No       | Number of days to analyze (default 30, max 365) |
+| `organizationId` | `number` | No       | Organization to query                           |
+
+**Returns:**
+
+| Field             | Type     | Description                               |
+| ----------------- | -------- | ----------------------------------------- |
+| `totalVisits`     | `number` | Total page visits in the period           |
+| `uniqueVisitors`  | `number` | Unique visitor count                      |
+| `liveUsers`       | `number` | Currently active users                    |
+| `topReferrers`    | `array`  | Top 5 referrer domains with visit counts  |
+| `deviceBreakdown` | `object` | Split of mobile / tablet / desktop visits |
+| `sessionMetrics`  | `object` | Average session duration and bounce rate  |
+
+---
+
+### `get_brand_sentiment`
+
+Brand sentiment analysis derived from LLM visibility responses. Returns an average sentiment score, distribution across positive/neutral/negative/mixed responses, per-platform breakdown, and top brand strengths and weaknesses extracted by AI.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                                    |
+| ---------------- | -------- | -------- | -------------------------------------------------------------- |
+| `llmId`          | `number` | No       | Filter to a specific LLM by ID. Omit for all LLMs             |
+| `days`           | `number` | No       | Restrict to responses from the last N days. Omit for all time |
+| `organizationId` | `number` | No       | Organization to query                                          |
+
+**Returns:** Average sentiment score (0–100), sentiment distribution counts, per-platform breakdown, and lists of top brand strengths and weaknesses.
+
+---
+
+### `get_competitor_facts`
+
+AI-extracted facts about your tracked competitors from LLM visibility responses. For each competitor, returns positive and negative facts along with a sentiment score.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                                    |
+| ---------------- | -------- | -------- | -------------------------------------------------------------- |
+| `llmId`          | `number` | No       | Filter to a specific LLM by ID. Omit for all LLMs             |
+| `days`           | `number` | No       | Restrict to responses from the last N days. Omit for all time |
+| `organizationId` | `number` | No       | Organization to query                                          |
+
+**Returns:** `competitorGroups` — array of competitors, each with up to 15 extracted facts and a sentiment score.
+
+---
+
+### `get_brand_facts`
+
+AI-extracted facts about your own brand from LLM visibility responses. Returns a brand attribute breakdown by category (pricing, performance, usability, features, support, brand) with positive/negative signal counts, plus a list of specific brand facts with their polarity.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                                    |
+| ---------------- | -------- | -------- | -------------------------------------------------------------- |
+| `llmId`          | `number` | No       | Filter to a specific LLM by ID. Omit for all LLMs             |
+| `days`           | `number` | No       | Restrict to responses from the last N days. Omit for all time |
+| `organizationId` | `number` | No       | Organization to query                                          |
+
+**Returns:** `attributes` — per-category breakdown with positive/negative counts; `brandFacts` — up to 40 specific extracted facts with polarity.
+
+---
+
+### `get_llm_referral_traffic`
+
+Filters your website traffic to show only visits originating from AI/LLM platforms (ChatGPT, Claude, Perplexity, Gemini, Copilot, and others). Covers both direct referrer domains and UTM-tagged sources.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                     |
+| ---------------- | -------- | -------- | ----------------------------------------------- |
+| `days`           | `number` | No       | Number of days to analyze (default 30, max 365) |
+| `organizationId` | `number` | No       | Organization to query                           |
+
+**Returns:**
+
+| Field              | Type     | Description                                    |
+| ------------------ | -------- | ---------------------------------------------- |
+| `llmReferrers`     | `array`  | Referrer domains matched to known AI platforms |
+| `llmUtmSources`    | `array`  | UTM sources matched to known AI platforms      |
+| `totalLlmVisits`   | `number` | Combined visits from referrers + UTM sources   |
+| `totalLlmVisitors` | `number` | Combined unique visitors from AI sources       |
+| `referrerVisits`   | `number` | Visits from referrer domains only              |
+| `utmVisits`        | `number` | Visits from UTM sources only                   |
+| `daysAnalyzed`     | `number` | Actual days window used                        |
+
+---
+
+### `list_ai_seo_crawls`
+
+List full-site AI SEO crawls for the organization, most recent first. Each crawl audits an entire domain. Call this first to find crawl IDs before fetching specific audit results with `get_ai_seo_audit_checks`.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                               |
+| ---------------- | -------- | -------- | ----------------------------------------- |
+| `limit`          | `number` | No       | Max crawls to return (default 10, max 20) |
+| `organizationId` | `number` | No       | Organization to query                     |
+
+**Returns:** `crawls` — array of crawls with crawl ID, domain, status (`running` or `completed`), and score breakdowns.
+
+---
+
+### `get_ai_seo_audit_checks`
+
+Get individual AI SEO check results for your organization. Without `auditId`, lists recent single-page audits. With `auditId`, returns the full list of individual checks (e.g. `robots_present`, `canonical`, `title_description`, `structured_data`) with pass/fail status, scores, and details.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                                       |
+| ---------------- | -------- | -------- | ----------------------------------------------------------------- |
+| `auditId`        | `number` | No       | Specific audit ID to fetch checks for. Omit to list recent audits |
+| `limit`          | `number` | No       | Max audits to list when `auditId` is omitted (default 10, max 20) |
+| `organizationId` | `number` | No       | Organization to query                                             |
+
+**Returns:** When `auditId` is provided: `audit` metadata and `checks` array with per-check pass/fail status, scores, and details. When omitted: `audits` array of recent single-page audits.
+
+---
+
 ## API Keys
 
 API keys let you authenticate with the Pierview MCP server using a Bearer token instead of OAuth. This is useful for server-side integrations, CI/CD pipelines, or any environment where browser-based OAuth isn't practical.
