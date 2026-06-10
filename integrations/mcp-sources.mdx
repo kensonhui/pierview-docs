@@ -1,5 +1,5 @@
 ---
-title: "Connect Mintlify Docs (MCP Sources)"
+title: "Connect Mintlify Docs"
 description: "Ground AI-generated content in your own product documentation using an MCP source"
 ---
 
@@ -8,7 +8,9 @@ description: "Ground AI-generated content in your own product documentation usin
 MCP Sources let you connect an MCP-compatible source, such as your **Mintlify docs**, so Pierview can query it before writing content. The AI uses your documentation to ground articles in accurate product details: features, terminology, and how things actually work. This means generated content references your real product instead of guessing.
 
 <Info>
-  Your MCP server must be **publicly accessible with no authentication required**. Pierview queries the endpoint without credentials, so a private or auth-gated server cannot be used.
+  Your MCP server must be **publicly accessible with no authentication
+  required**. Pierview queries the endpoint without credentials, so a private or
+  auth-gated server cannot be used.
 </Info>
 
 ## Step 1: Open the Documents page
@@ -18,24 +20,31 @@ In Pierview, go to [Brand Kit → Documents](https://pierview.ai/dashboard/brand
 Find the **MCP Sources** card and click **Add Source**.
 
 <Frame>
-  <img src="/images/mcp-sources/mcp-sources-card.png" alt="MCP Sources card with an Add Source button and a connected Mintlify docs source" />
+  <img
+    src="/images/mcp-sources/mcp-sources-card.png"
+    alt="MCP Sources card with an Add Source button and a connected Mintlify docs source"
+  />
 </Frame>
 
 ## Step 2: Add your MCP server
 
 In the dialog, enter:
 
-| Field | What to enter |
-|---|---|
-| **Name** | A label for the source (e.g. `Mintlify Docs`) |
+| Field                | What to enter                                                                      |
+| -------------------- | ---------------------------------------------------------------------------------- |
+| **Name**             | A label for the source (e.g. `Mintlify Docs`)                                      |
 | **MCP Endpoint URL** | The full URL of your public MCP server (e.g. `https://your-docs.mintlify.app/mcp`) |
 
 <Frame>
-  <img src="/images/mcp-sources/add-source-dialog.png" alt="Add MCP Source dialog with Name and MCP Endpoint URL fields" />
+  <img
+    src="/images/mcp-sources/add-source-dialog.png"
+    alt="Add MCP Source dialog with Name and MCP Endpoint URL fields"
+  />
 </Frame>
 
 <Tip>
-  For Mintlify docs, the MCP endpoint is found in your Mintlify dashboard under **Integrations → MCP**. It's typically your docs URL with `/mcp` appended.
+  For Mintlify docs, the MCP endpoint is found in your Mintlify dashboard under
+  **Integrations → MCP**. It's typically your docs URL with `/mcp` appended.
 </Tip>
 
 Click **Add Source** to save it. The source now appears in the MCP Sources card and is used as a reference whenever content is created.
@@ -52,9 +61,12 @@ To remove a source, click the trash icon next to it in the MCP Sources card.
 
 <AccordionGroup>
   <Accordion title="Add Source fails or rejects the URL">
-    The endpoint URL must start with `https://`. Double-check the URL is complete and points to your MCP endpoint (often ending in `/mcp`).
+    The endpoint URL must start with `https://`. Double-check the URL is
+    complete and points to your MCP endpoint (often ending in `/mcp`).
   </Accordion>
   <Accordion title="Content isn't reflecting my docs">
-    Make sure the MCP server is **public and requires no authentication**, Pierview queries it without credentials. If the server is auth-gated or behind a login, queries will fail and the AI will fall back to web research.
+    Make sure the MCP server is **public and requires no authentication**,
+    Pierview queries it without credentials. If the server is auth-gated or
+    behind a login, queries will fail and the AI will fall back to web research.
   </Accordion>
 </AccordionGroup>
