@@ -1,11 +1,11 @@
 ---
-title: "Vercel Integration"
+title: "Vercel Plugin"
 description: "Detect AI agent visits to your website using Vercel server logs"
 ---
 
 ## Overview
 
-AI agents like ChatGPT, Perplexity, Claude, and Gemini visit your website via server-side requests — they don't execute JavaScript, so they're invisible to traditional client-side analytics. The Vercel integration analyzes your production server logs to detect these visits automatically.
+AI agents like ChatGPT, Perplexity, Claude, and Gemini visit your website via server-side requests, they don't execute JavaScript, so they're invisible to traditional client-side analytics. The Vercel integration analyzes your production server logs to detect these visits automatically.
 
 Once connected, Pierview creates a log drain on your Vercel project. Vercel streams request logs to Pierview in real time, where we identify known AI agent User-Agents and surface the data in your Traffic Analysis dashboard.
 
@@ -31,7 +31,7 @@ Once connected, Pierview creates a log drain on your Vercel project. Vercel stre
 5. You'll be redirected back to Pierview with a success message.
 
 <Info>
-  Pierview automatically creates a log drain on your Vercel project during setup. Only production logs are analyzed — staging and development environments are excluded.
+  Pierview automatically creates a log drain on your Vercel project during setup. Only production logs are analyzed, staging and development environments are excluded.
 </Info>
 
 ## Step 2: View Agent Traffic
@@ -39,9 +39,9 @@ Once connected, Pierview creates a log drain on your Vercel project. Vercel stre
 1. Go to **Traffic Analysis** and click the **Agent Traffic** tab in the analytics section.
 
 2. You'll see:
-   - **Agent visits over time** — a line chart showing daily AI agent traffic
-   - **Breakdown by provider** — a pie chart showing which AI platforms visit your site most
-   - **Top pages** — the most frequently visited pages by AI agents
+   - **Agent visits over time**: a line chart showing daily AI agent traffic
+   - **Breakdown by provider**: a pie chart showing which AI platforms visit your site most
+   - **Top pages**: the most frequently visited pages by AI agents
 
 <Warning>
   It may take a few minutes after connecting for the first data to appear, as Vercel needs to start streaming logs to the new drain.
@@ -67,7 +67,7 @@ This removes the log drain from your Vercel project and stops all data collectio
 <AccordionGroup>
   <Accordion title="No agent data appearing after connecting">
     - Verify the integration shows **Log Drain Active** on the Vercel Integration card
-    - Wait a few minutes — Vercel log delivery can have a short delay
+    - Wait a few minutes, Vercel log delivery can have a short delay
     - Ensure your site receives production traffic (staging/dev logs are excluded)
     - Check that your Vercel project is deployed and receiving requests
   </Accordion>

@@ -5,7 +5,7 @@ description: "Track AI agent traffic on your WordPress site with Pierview Agent 
 
 ## Overview
 
-The Pierview Agent Analytics plugin detects when AI agents visit your WordPress site and reports those visits to your Pierview dashboard. It identifies traffic from 25+ AI agents — including ChatGPT, Claude, Perplexity, Gemini, Grok, and more — giving you a clear picture of how AI systems are crawling and consuming your content.
+The Pierview Agent Analytics plugin detects when AI agents visit your WordPress site and reports those visits to your Pierview dashboard. It identifies traffic from 25+ AI agents, including ChatGPT, Claude, Perplexity, Gemini, Grok, and more, giving you a clear picture of how AI systems are crawling and consuming your content.
 
 No JavaScript is injected on the frontend. Detection happens server-side on every request.
 
@@ -91,9 +91,9 @@ The plugin matches User-Agent strings against 25+ known AI patterns:
 
 The plugin includes built-in privacy controls under the **Privacy** tab in plugin settings.
 
-**Query parameter redaction** — Strip sensitive values from tracked URLs before they are sent to Pierview. For example, add `token` or `session_id` to prevent those values from leaving your server.
+**Query parameter redaction**: Strip sensitive values from tracked URLs before they are sent to Pierview. For example, add `token` or `session_id` to prevent those values from leaving your server.
 
-**Path exclusions** — Exclude entire sections of your site from tracking by prefix. For example, adding `/checkout/` or `/members/` ensures those paths are never reported.
+**Path exclusions**: Exclude entire sections of your site from tracking by prefix. For example, adding `/checkout/` or `/members/` ensures those paths are never reported.
 
 The following are always excluded, regardless of settings:
 
@@ -118,7 +118,7 @@ Each tracked AI visit sends the following to Pierview:
 | `timestamp` | UTC timestamp of the visit |
 
 <Warning>
-  IP addresses are included in tracked events and are necessary for accurate bot tracking — they allow Pierview to deduplicate visits, identify known bot IP ranges, and distinguish real AI agents from spoofed User-Agent strings.
+  IP addresses are included in tracked events and are necessary for accurate bot tracking, they allow Pierview to deduplicate visits, identify known bot IP ranges, and distinguish real AI agents from spoofed User-Agent strings.
 </Warning>
 
 ## Next Steps

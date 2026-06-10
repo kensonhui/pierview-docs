@@ -5,13 +5,13 @@ description: "Automatically publish AI-generated content to your Sanity Content 
 
 ## Overview
 
-The Sanity integration lets you automatically generate and publish SEO-optimized content directly to your Sanity project. Set up a content schedule, connect your Sanity dataset, and new articles will be created as documents in your Content Lake — ready to review and publish from Sanity Studio.
+The Sanity integration lets you automatically generate and publish SEO-optimized content directly to your Sanity project. Set up a content schedule, connect your Sanity dataset, and new articles will be created as documents in your Content Lake, ready to review and publish from Sanity Studio.
 
 Content is converted from markdown to **Portable Text** so it renders correctly in rich-text fields.
 
 ## Step 1: Create a Sanity API Token
 
-1. Open Sanity Studio and click your **project name** in the top-left corner. A dropdown will appear — click **Manage project**.
+1. Open Sanity Studio and click your **project name** in the top-left corner. A dropdown will appear, click **Manage project**.
 
 <Frame>
   <img src="/images/sanity/sanity-manage-project.png" alt="Click the project name then Manage project" />
@@ -35,7 +35,7 @@ Content is converted from markdown to **Portable Text** so it renders correctly 
   The token needs **Editor** (write) access to create documents. Viewer-only tokens will not work.
 </Warning>
 
-5. Copy the token — you'll paste it into Pierview shortly.
+5. Copy the token, you'll paste it into Pierview shortly.
 
 6. While you're here, click the **Datasets** tab to confirm which dataset you want to publish content to. The dataset name (e.g. `production`) is what you'll enter in Pierview.
 
@@ -43,7 +43,7 @@ Content is converted from markdown to **Portable Text** so it renders correctly 
   <img src="/images/sanity/sanity-datasets.png" alt="Datasets tab showing production and testing datasets" />
 </Frame>
 
-7. Note your **Project ID** (shown at the top of the management page at [sanity.io/manage](https://www.sanity.io/manage)) — you'll need it in the next step.
+7. Note your **Project ID** (shown at the top of the management page at [sanity.io/manage](https://www.sanity.io/manage)), you'll need it in the next step.
 
 ## Step 2: Connect Pierview to Sanity
 
@@ -59,7 +59,7 @@ The setup is a 3-step wizard: credentials → document type → field mapping.
 
 2. Enter your **Project ID**, **Dataset** (default: `production`), and paste in your **API Token**.
 
-3. Click **Next** — Pierview will verify the credentials and fetch your document types.
+3. Click **Next**, Pierview will verify the credentials and fetch your document types.
 
 **Document Type**
 
@@ -84,7 +84,7 @@ The setup is a 3-step wizard: credentials → document type → field mapping.
 
 Any content scheduled for generation will automatically be created in your Sanity Content Lake as a **draft**, where you can review it in Sanity Studio and publish it when ready.
 
-You can also publish content on demand — go to any generated article and click **Publish** in the top-right sidebar to send it to Sanity immediately.
+You can also publish content on demand, go to any generated article and click **Publish** in the top-right sidebar to send it to Sanity immediately.
 
 <Info>
   Content is published as a draft by default. You'll need to publish it from Sanity Studio to make it live.
@@ -103,12 +103,12 @@ You can also publish content on demand — go to any generated article and click
     Your API token may not have write access. Go to [sanity.io/manage](https://www.sanity.io/manage) → **API** → **Tokens** and create a new token with **Editor** permission, then update it in Pierview settings.
   </Accordion>
   <Accordion title="Content body is empty or missing formatting">
-    Make sure the Content field in your Sanity schema is a **Portable Text** (array) field, not a plain string. Pierview converts markdown to Portable Text blocks — plain string fields will not display the formatted content correctly.
+    Make sure the Content field in your Sanity schema is a **Portable Text** (array) field, not a plain string. Pierview converts markdown to Portable Text blocks, plain string fields will not display the formatted content correctly.
   </Accordion>
   <Accordion title="Document type not showing in the dropdown">
     The dropdown is populated from your Sanity project using a GROQ query. If your document type is missing, make sure at least one document of that type exists in the dataset, or that the type is defined and your API token has read access to the dataset.
   </Accordion>
   <Accordion title="Slug field not being set">
-    Slug in Sanity is typically an object with a `current` field (e.g. `{ _type: "slug", current: "my-article" }`). Pierview handles this automatically — just make sure the field name in your mapping matches the field name in your schema exactly.
+    Slug in Sanity is typically an object with a `current` field (e.g. `{ _type: "slug", current: "my-article" }`). Pierview handles this automatically, just make sure the field name in your mapping matches the field name in your schema exactly.
   </Accordion>
 </AccordionGroup>

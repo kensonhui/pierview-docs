@@ -56,13 +56,32 @@
             ]
           },
           {
+            "group": "Content Creation",
+            "icon": "pen-nib",
+            "pages": [
+              "integrations/auto-publishing",
+              "integrations/mcp-sources",
+              {
+                "group": "CMS Integrations",
+                "expanded": false,
+                "pages": [
+                  "integrations/framer-integration",
+                  "integrations/sanity-integration"
+                ]
+              }
+            ]
+          },
+          {
             "group": "Integrations",
             "icon": "plug",
             "pages": [
-              "integrations/auto-publishing",
-              "integrations/mcp-server",
-              "integrations/framer-integration",
-              "integrations/sanity-integration",
+              "integrations/mcp-server"
+            ]
+          },
+          {
+            "group": "AI Agent Analytics",
+            "icon": "robot",
+            "pages": [
               "integrations/vercel-integration",
               "integrations/wordpress-plugin"
             ]
