@@ -5,14 +5,14 @@ description: "Automatically publish AI-generated content to your Webflow CMS"
 
 ## Overview
 
-The Webflow CMS integration lets you publish SEO-optimized content directly to your Webflow site's CMS collection — as a draft or live — straight from Pierview. Set up your connection once, then export any generated article with a single click.
+The Webflow CMS integration lets you publish SEO-optimized content directly to your Webflow site's CMS collection, as a draft or live, straight from Pierview. Set up your connection once, then export any generated article with a single click.
 
 ## Step 1: Generate a Webflow Site API Token
 
 1. In Webflow, open your site and go to **Site settings → Apps & integrations → API access**.
 2. Click **Generate API token**, name it `Pierview`, and grant these scopes:
-   - **CMS** — Read and write (`cms:read`, `cms:write`)
-   - **Sites** — Read (`sites:read`)
+   - **CMS**: Read and write (`cms:read`, `cms:write`)
+   - **Sites**: Read (`sites:read`)
 3. Copy the token.
 
 <Frame>
@@ -24,7 +24,7 @@ The Webflow CMS integration lets you publish SEO-optimized content directly to y
 </Frame>
 
 <Warning>
-  Keep the token dialog open until you've pasted it into Pierview — Webflow only shows the token once.
+  Keep the token dialog open until you've pasted it into Pierview. Webflow only shows the token once.
 </Warning>
 
 ## Step 2: Connect Pierview to Webflow
@@ -44,11 +44,11 @@ The Webflow CMS integration lets you publish SEO-optimized content directly to y
 
 ## Step 3: Add an "Article HTML" field to your collection (one-time)
 
-Webflow's built-in **Rich Text** field does not support tables — it strips them out. Pierview writes the article as HTML into a **Plain Text** field instead, which you display using a **Custom Code Embed** in your blog template. This setup takes about 5 minutes and only needs to be done once.
+Webflow's built-in **Rich Text** field does not support tables, it strips them out. Pierview writes the article as HTML into a **Plain Text** field instead, which you display using a **Custom Code Embed** in your blog template. This setup takes about 5 minutes and only needs to be done once.
 
-### 3a — Add the field in your collection
+### 3a. Add the field in your collection
 
-1. In Webflow, open your **CMS collection** (e.g. "Blog Posts") — you'll see your existing fields listed here.
+1. In Webflow, open your **CMS collection** (e.g. "Blog Posts"), where you'll see your existing fields listed.
 
 <Frame>
   <img src="/images/webflow/webflow-collection-fields.png" alt="Webflow collection fields list showing existing fields like Post Body and the Add new field button" />
@@ -65,7 +65,7 @@ Webflow's built-in **Rich Text** field does not support tables — it strips the
   The field **must** be set to multiple lines. A single-line Plain Text field will save drafts fine but fail on live publish with "Expected value to be a single line" because the article HTML contains line breaks.
 </Warning>
 
-### 3b — Add a Code Embed to your blog template
+### 3b. Add a Code Embed to your blog template
 
 1. Open your **blog post template page** in the Webflow Designer.
 2. In the **Add panel** (left sidebar), go to **Components → Embed** and drag it onto the page where you want the article body to appear.
@@ -75,9 +75,9 @@ Webflow's built-in **Rich Text** field does not support tables — it strips the
   <img src="/images/webflow/webflow-embed-bind-field.png" alt="Binding the Article HTML field to a Code Embed element in the Webflow Designer" />
 </Frame>
 
-### 3c — Already have blog posts? Set up conditional visibility
+### 3c. Already have blog posts? Set up conditional visibility
 
-If your site already has blog posts using a **Rich Text** field (e.g. `Post Body`), you need to tell Webflow when to show each element — otherwise old posts will show an empty embed and new posts will show an empty Rich Text block.
+If your site already has blog posts using a **Rich Text** field (e.g. `Post Body`), you need to tell Webflow when to show each element, otherwise old posts will show an empty embed and new posts will show an empty Rich Text block.
 
 Pierview writes to the new **Article HTML** field and never touches your existing `Post Body` field, so your old content is completely safe. You just need to add a visibility rule to each element on the template page:
 
@@ -87,7 +87,7 @@ Pierview writes to the new **Article HTML** field and never touches your existin
 Old posts will render via Rich Text as before, Pierview posts will render via the Embed, and neither shows an empty gap.
 
 <Info>
-  No existing blogs? Skip this step — it only applies if you already have posts in your collection using a Rich Text field.
+  No existing blogs? Skip this step, it only applies if you already have posts in your collection using a Rich Text field.
 </Info>
 
 4. Publish your site.
@@ -104,7 +104,7 @@ In **Webflow Designer → Site Settings → Custom Code → Head Code**, add:
 
 ```css
 <style>
-/* ── Pierview content styles ── */
+/* Pierview content styles */
 .pv-content table {
   border-collapse: collapse;
   width: 100%;
@@ -123,11 +123,11 @@ In **Webflow Designer → Site Settings → Custom Code → Head Code**, add:
 </style>
 ```
 
-Everything else — headings, paragraphs, bold, lists — inherits your site's existing typography automatically.
+Everything else (headings, paragraphs, bold, lists) inherits your site's existing typography automatically.
 
 ## You're Connected!
 
-Open any content generation and click **Publish** in the top-right sidebar. Choose **Save as Draft** (staged in Webflow, not visible to visitors yet) or **Publish Live** to make it live. Re-publishing the same article updates the existing item — it will never create a duplicate.
+Open any content generation and click **Publish** in the top-right sidebar. Choose **Save as Draft** (staged in Webflow, not visible to visitors yet) or **Publish Live** to make it live. Re-publishing the same article updates the existing item, so it will never create a duplicate.
 
 <Frame>
   <img src="/images/webflow/webflow-publish-panel.png" alt="Pierview publish panel showing Webflow connected with Save as Draft and Publish Live buttons" />
@@ -156,7 +156,7 @@ Open any content generation and click **Publish** in the top-right sidebar. Choo
     - Check that the integration is enabled (toggle is on)
     - For live publishing, ensure the site has been published at least once in Webflow
   </Accordion>
-  <Accordion title="I already have blog posts — how do I show both old and new content?">
+  <Accordion title="I already have blog posts, how do I show both old and new content?">
     Your existing posts likely use a **Rich Text** field (e.g. `Post Body`). Pierview writes to the new **Article HTML** field and never touches your old field, so existing content is safe.
 
     To make one template page render both cleanly, add a **conditional visibility** rule to each element (select the element → **Settings panel → Conditional Visibility**):
@@ -170,6 +170,6 @@ Open any content generation and click **Publish** in the top-right sidebar. Choo
     Follow Step 4 to add your own `.pv-content` CSS overrides in Webflow's Custom Code settings. This controls border colors, header backgrounds, and spacing to match your design exactly.
   </Accordion>
   <Accordion title="I can't edit the article body in Webflow Designer">
-    This is expected. Because the article body lives inside a Code Embed, it is not directly editable in Webflow Designer. Make your changes in Pierview and re-publish — the Webflow item updates automatically.
+    This is expected. Because the article body lives inside a Code Embed, it is not directly editable in Webflow Designer. Make your changes in Pierview and re-publish, and the Webflow item updates automatically.
   </Accordion>
 </AccordionGroup>
