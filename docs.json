@@ -67,6 +67,7 @@
                 "pages": [
                   "integrations/framer-integration",
                   "integrations/sanity-integration",
+                  "integrations/webflow-integration",
                   "integrations/wordpress-integration"
                 ]
               }
