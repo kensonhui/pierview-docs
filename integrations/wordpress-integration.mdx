@@ -1,0 +1,152 @@
+---
+title: "WordPress CMS Integration"
+description: "Automatically publish AI-generated content to your WordPress site"
+---
+
+## Overview
+
+The WordPress integration lets you publish SEO-optimized content directly to your WordPress site, as a draft or live, straight from Pierview. Connect once, then export any generated article with a single click, or let scheduled content publish automatically.
+
+Articles are sent as native WordPress blocks, so they appear as normal, fully editable posts in your editor. **Tables, headings, lists and formatting all match your theme automatically, with no extra setup.**
+
+<Info>
+  This integration is for **self-hosted WordPress** (a WordPress.org site running on your own host, e.g. Hostinger, Bluehost, SiteGround, Kinsta, WP Engine). Sites on **WordPress.com's** free/Personal/Premium plans use a different system and are not supported. See the Troubleshooting section below.
+</Info>
+
+## Step 1: Create an Application Password
+
+Pierview connects using a WordPress **Application Password**, a secure, revocable token that's separate from your normal login password.
+
+1. Log into your WordPress admin (`/wp-admin`) as an **Administrator**, **Editor**, or **Author** (publishing live requires at least Author).
+2. Go to **Users** in the left sidebar and click **Profile**.
+
+<Frame>
+  <img src="/images/wordpress/wordpress-users-menu.png" alt="WordPress admin sidebar showing the Users submenu with Profile highlighted" />
+</Frame>
+
+3. Scroll down to the **Application Passwords** section.
+
+<Frame>
+  <img src="/images/wordpress/wordpress-application-password.png" alt="The Application Passwords section at the bottom of the WordPress Profile page" />
+</Frame>
+
+4. Enter a name (e.g. `Pierview`) in the **New Application Password Name** field and click **Add Application Password**.
+
+<Frame>
+  <img src="/images/wordpress/wordpress-application-password-created.png" alt="Entering Pierview as the application password name before clicking Add Application Password" />
+</Frame>
+
+5. WordPress shows the generated password **once**, so copy it now. The spaces in it are fine.
+
+<Warning>
+  Your site must be served over **HTTPS** for Application Passwords to work. WordPress hides this section on non-secure sites. Keep the token handy; you'll paste it into Pierview next.
+</Warning>
+
+## Step 2: Connect Pierview to WordPress
+
+1. In Pierview, go to [Settings → Integrations → CMS Integrations](https://pierview.ai/dashboard/configuration/integrations) and click **Connect** next to WordPress.
+
+<Frame>
+  <img src="/images/pierview-main-cms-integrations.png" alt="Pierview CMS Integrations page with the Connect button next to WordPress" />
+</Frame>
+
+2. Fill in:
+   - **Site URL**: your site's address, e.g. `https://yourblog.com` (must be HTTPS).
+   - **Username**: your WordPress login username.
+   - **Application Password**: the token from Step 1.
+
+<Frame>
+  <img src="/images/wordpress/wordpress-connect-modal.png" alt="The Connect WordPress dialog in Pierview with Site URL, Username, and Application Password fields" />
+</Frame>
+
+3. Click **Test connection**. A success message with your display name confirms the credentials work.
+
+4. Click **Save**.
+
+That's it. There are no fields to map or collections to configure. WordPress posts already have a title, content, and slug built in, so Pierview publishes straight to them.
+
+## You're Connected!
+
+Open any generated article and click the **Publish** tab in the top-right sidebar. You'll see your WordPress site with two options:
+
+- **Save as Draft**: stages the post in WordPress but keeps it hidden from visitors.
+- **Publish Live**: publishes the post immediately.
+
+Re-publishing the same article **updates the existing post** — it never creates a duplicate.
+
+<Frame>
+  <img src="/images/wordpress/wordpress-publish-panel.png" alt="The Pierview publish panel showing WordPress connected with Save as Draft and Publish Live options" />
+</Frame>
+
+Click **Save as Draft** and you'll see a confirmation once the draft is saved:
+
+<Frame>
+  <img src="/images/wordpress/wordpress-saved-as-draft.png" alt="Pierview showing a Saved as draft confirmation after saving to WordPress" />
+</Frame>
+
+Click **Publish Live** to push it public immediately:
+
+<Frame>
+  <img src="/images/wordpress/wordpress-published-live.png" alt="Pierview showing a Published live confirmation after publishing to WordPress" />
+</Frame>
+
+And here's how it looks on your site — formatting, headings, and tables all render to match your theme automatically:
+
+<Frame>
+  <img src="/images/wordpress/wordpress-rendered-page.png" alt="The published article rendered live on the WordPress site, showing a formatted table" />
+</Frame>
+
+<Tip>
+  Content scheduled for automatic generation will also publish to WordPress automatically (as a live post) once each article finishes generating, with no manual step needed.
+</Tip>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Couldn't authenticate / 401 error">
+    A few things to check:
+    - Confirm the **username** and **application password** are correct (use the application password, not your login password).
+    - Make sure the site is served over **HTTPS**.
+    - Some hosts (Apache with CGI/FastCGI) strip the `Authorization` header before WordPress sees it. If you're on shared hosting and credentials are definitely correct, ask your host to allow the Authorization header, or add this line to your `.htaccess`:
+      ```apache
+      SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+      ```
+  </Accordion>
+  <Accordion title="Permission denied / 403 error">
+    Your WordPress user needs permission to publish. Use an **Author**, **Editor**, or **Administrator** account. Subscribers and Contributors can't publish posts.
+  </Accordion>
+  <Accordion title="REST API not found / 404 error">
+    Pierview publishes through WordPress's built-in REST API (`/wp-json`). If it's reported as missing:
+    - Double-check the **Site URL** (it should be your site's root, e.g. `https://yourblog.com`).
+    - A **security plugin** (e.g. Wordfence, Solid Security) or firewall may be disabling the REST API or Application Passwords. Re-enable them, or allow the `/wp-json/wp/v2/` routes.
+  </Accordion>
+  <Accordion title="My site is on WordPress.com, why won't it connect?">
+    WordPress.com's free, Personal, and Premium plans don't expose the standard REST API + Application Password system this integration uses. Only **self-hosted WordPress** (WordPress.org, on any host), or WordPress.com **Business/Commerce** plans on a custom domain, are supported.
+  </Accordion>
+  <Accordion title="My tables look plain / I want to change their colours">
+    Published tables automatically inherit your **theme's** styling, so they match the rest of your site. If your theme styles tables minimally and you'd like to customise them, add CSS via **Editor → Styles → ⋮ (three-dot menu) → Additional CSS**, not in the post itself, since WordPress strips inline `<style>` from post content.
+
+<Frame>
+  <img src="/images/wordpress/wordpress-styles-additional-css.png" alt="WordPress Styles panel with the three-dot menu open, showing the Additional CSS option" />
+</Frame>
+
+    For example:
+    ```css
+    .wp-block-table th {
+      background: #f7f7f7;       /* your brand header colour */
+      font-weight: 600;
+    }
+    .wp-block-table td,
+    .wp-block-table th {
+      border: 1px solid #e2e2e2; /* your brand border colour */
+      padding: 8px 12px;
+    }
+    ```
+    This applies site-wide to every published article.
+  </Accordion>
+  <Accordion title="Articles not appearing">
+    - Verify the connection is **enabled** (toggle is on in Pierview's CMS settings).
+    - Confirm the **Site URL**, **username**, and **application password** are correct.
+    - Check the post isn't sitting as a **draft** under Posts → All Posts when you expected it live.
+  </Accordion>
+</AccordionGroup>
