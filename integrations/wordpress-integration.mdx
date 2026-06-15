@@ -10,7 +10,7 @@ The WordPress integration lets you publish SEO-optimized content directly to you
 Articles are sent as native WordPress blocks, so they appear as normal, fully editable posts in your editor. **Tables, headings, lists and formatting all match your theme automatically, with no extra setup.**
 
 <Info>
-  This integration is for **self-hosted WordPress** (a WordPress.org site running on your own host, e.g. Hostinger, Bluehost, SiteGround, Kinsta, WP Engine). Sites on **WordPress.com's** free/Personal/Premium plans use a different system and are not supported. See the Troubleshooting section below.
+  This integration works with **self-hosted WordPress** (WordPress.org on any host, e.g. Hostinger, Bluehost, SiteGround, Kinsta, WP Engine) **and WordPress.com** — both use Application Passwords over the same REST API.
 </Info>
 
 ## Step 1: Create an Application Password
@@ -121,7 +121,7 @@ And here's how it looks on your site — formatting, headings, and tables all re
     - A **security plugin** (e.g. Wordfence, Solid Security) or firewall may be disabling the REST API or Application Passwords. Re-enable them, or allow the `/wp-json/wp/v2/` routes.
   </Accordion>
   <Accordion title="My site is on WordPress.com, why won't it connect?">
-    WordPress.com's free, Personal, and Premium plans don't expose the standard REST API + Application Password system this integration uses. Only **self-hosted WordPress** (WordPress.org, on any host), or WordPress.com **Business/Commerce** plans on a custom domain, are supported.
+    WordPress.com supports Application Passwords. Go to your WordPress.com profile and scroll down to **Application Passwords** to generate one, then use it the same way as a self-hosted site. If it still fails, confirm your site URL is correct and that it uses HTTPS.
   </Accordion>
   <Accordion title="My tables look plain / I want to change their colours">
     Published tables automatically inherit your **theme's** styling, so they match the rest of your site. If your theme styles tables minimally and you'd like to customise them, add CSS via **Editor → Styles → ⋮ (three-dot menu) → Additional CSS**, not in the post itself, since WordPress strips inline `<style>` from post content.
