@@ -11,11 +11,28 @@ When you map the **Content** field, you choose one of two approaches: **Rich Tex
 
 ## Step 1: Generate a Webflow Site API Token
 
-1. In Webflow, open your site and go to **Site settings → Apps & integrations → API access**.
-2. Click **Generate API token**, name it `Pierview`, and grant these scopes:
+1. In Webflow, open your site, click the **Webflow icon** in the top-left, then choose **Site settings** from the dropdown.
+
+<Frame>
+  <img src="/images/webflow/webflow-site-settings-dropdown.png" alt="Webflow top-left menu dropdown with Site settings highlighted" />
+</Frame>
+
+2. In the settings sidebar, click **Apps & integrations**.
+
+<Frame>
+  <img src="/images/webflow/webflow-apps-integrations-nav.png" alt="Webflow site settings sidebar with Apps & Integrations highlighted" />
+</Frame>
+
+3. Scroll to the **API access** section and click **Generate API token**.
+
+<Frame>
+  <img src="/images/webflow/webflow-api-access-generate.png" alt="Webflow API access section with the Generate API token button" />
+</Frame>
+
+4. Name it `Pierview`, and grant these scopes:
    - **CMS**: Read and write (`cms:read`, `cms:write`)
    - **Sites**: Read (`sites:read`)
-3. Copy the token.
+5. Copy the token.
 
 <Frame>
   <img src="/images/webflow/webflow-api-token-cms-scope.png" alt="Webflow Generate API Token dialog showing CMS set to Read and write" />
