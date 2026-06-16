@@ -67,7 +67,25 @@ Map **Content → your Rich Text field** (e.g. `Post Body`). When Pierview detec
 - Existing posts keep rendering exactly as before, since Pierview writes to the same field they already use.
 - Headings, paragraphs, bold, italics, lists, links, and images all render natively.
 
-The one limitation: Webflow's Rich Text field strips tables. If an article contains a table, use the **copy button** on that table in the Pierview content editor to copy it as HTML, then embed it where you want it in Webflow.
+The one limitation: Webflow's Rich Text field strips tables. If an article contains a table, embed it manually with the steps below.
+
+#### Adding a table in Rich Text
+
+Pierview publishes everything except tables into the Rich Text field. To place a table, copy it from Pierview and drop it into an HTML embed block inside Rich Text:
+
+1. In Pierview's content editor, hover the table and click the **copy button**, then choose **Copy as HTML**.
+2. In Webflow, open the post and click into the **Post Body** Rich Text field at the spot where the table should appear.
+
+<Frame>
+  <img src="/images/webflow/webflow-richtext-post-body-field.png" alt="Webflow post editor with the cursor placed inside the Post Body Rich Text field" />
+</Frame>
+
+3. Click the **`+`** (add block) button and choose **HTML embed**.
+4. Paste the copied HTML and apply. The table now renders inline with the rest of the article.
+
+<Frame>
+  <img src="/images/webflow/webflow-richtext-add-html-embed.png" alt="Webflow Rich Text add-block menu with the HTML embed option highlighted" />
+</Frame>
 
 That's it for Rich Text. No template setup needed, so skip ahead to [You're Connected](#youre-connected) and start publishing.
 
