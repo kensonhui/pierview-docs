@@ -143,13 +143,15 @@ List all organizations you have access to. Call this first to discover available
 
 ### `get_key_metrics`
 
-Get mention rate, average ranking, and share of voice for your organization (14-day rolling average).
+Get mention rate, average ranking, and share of voice for your organization (same as the Key Metrics cards on the dashboard). The previous period of equal length is computed automatically for comparison.
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                          |
-| ---------------- | -------- | -------- | ---------------------------------------------------- |
-| `organizationId` | `number` | No       | Organization to query (defaults to your default org) |
+| Parameter        | Type     | Required | Description                                                                                            |
+| ---------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------- |
+| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                       |
+| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days |
+| `organizationId` | `number` | No       | Organization to query (defaults to your default org)                                                  |
 
 **Returns:**
 
@@ -163,30 +165,36 @@ Get mention rate, average ranking, and share of voice for your organization (14-
 
 ### `get_citations_by_host`
 
-Get top cited hosts with week-over-week metrics and LLM breakdown.
+Get top cited hosts/domains with citation counts and per-LLM breakdown. The previous period of equal length is computed automatically for comparison.
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                        |
-| ---------------- | -------- | -------- | -------------------------------------------------- |
-| `limit`          | `number` | No       | Max hosts to return (default 50, max 500)          |
-| `endDate`        | `string` | No       | End date for WoW comparison in `YYYY-MM-DD` format |
-| `organizationId` | `number` | No       | Organization to query                              |
+| Parameter        | Type     | Required | Description                                                                                                     |
+| ---------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| `limit`          | `number` | No       | Max hosts to return (default 50, max 500; the dashboard API caps at 200)                                       |
+| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                               |
+| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days      |
+| `granularity`    | `string` | No       | `week` (default) compares this week vs last week; `month` compares calendar months. Ignored when both dates set |
+| `cumulativeAsOf` | `string` | No       | When set (`YYYY-MM-DD`), adds `cumulative_current`/`cumulative_previous` (all citations ever up to that date vs end of the prior calendar month) |
+| `organizationId` | `number` | No       | Organization to query                                                                                          |
 
-**Returns:** Cited hosts with total counts, week-over-week deltas, and per-LLM citation breakdowns.
+**Returns:** Cited hosts with total counts, period-over-period deltas, and per-LLM citation breakdowns.
 
 ---
 
 ### `get_citations_by_page`
 
-Get top cited pages with week-over-week metrics and LLM breakdown.
+Get top cited pages (URLs) with period citation metrics and per-LLM breakdown. The previous period of equal length is computed automatically for comparison.
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                               |
-| ---------------- | -------- | -------- | ----------------------------------------- |
-| `limit`          | `number` | No       | Max pages to return (default 50, max 500) |
-| `organizationId` | `number` | No       | Organization to query                     |
+| Parameter        | Type     | Required | Description                                                                                                     |
+| ---------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| `limit`          | `number` | No       | Max pages to return (default 50, max 500)                                                                      |
+| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                               |
+| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days      |
+| `granularity`    | `string` | No       | `week` (default) compares this week vs last week; `month` compares calendar months. Ignored when both dates set |
+| `organizationId` | `number` | No       | Organization to query                                                                                          |
 
 **Returns:** Cited pages with URL, title, total counts, and per-LLM citation breakdowns.
 
@@ -194,16 +202,17 @@ Get top cited pages with week-over-week metrics and LLM breakdown.
 
 ### `get_visibility_timeseries`
 
-Get visibility trends over time by competitor.
+Get visibility trends over time by competitor. Returns at most 12 x-axis points and the top 5 competitors.
 
 **Parameters:**
 
-| Parameter        | Type      | Required | Description                                             |
-| ---------------- | --------- | -------- | ------------------------------------------------------- |
-| `webSearch`      | `boolean` | No       | Filter by web search enabled responses (default `true`) |
-| `organizationId` | `number`  | No       | Organization to query                                   |
+| Parameter        | Type      | Required | Description                                                                                                  |
+| ---------------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| `webSearch`      | `boolean` | No       | Filter by web search enabled responses (default `true`)                                                     |
+| `granularity`    | `string`  | No       | `auto` (default), `daily`, `weekly`, or `monthly`. `auto` picks the coarsest bucket that keeps ≤12 points |
+| `organizationId` | `number`  | No       | Organization to query                                                                                       |
 
-**Returns:** Per-competitor time series with daily mention rates.
+**Returns:** Per-competitor time series with mention rates per time bucket.
 
 ---
 
@@ -239,14 +248,15 @@ Recent visibility prompts where competitors appeared in LLM responses but your b
 
 ### `get_traffic_analytics`
 
-Full website traffic analytics for your organization. Returns total visits, unique visitors, live users, top referrers, traffic sources breakdown, device breakdown, session metrics, bot vs human traffic analysis, UTM campaign analytics, and daily traffic time series.
+Full website traffic analytics for your organization (same data as Dashboard → Traffic Analysis). Returns total visits, unique visitors, live users, top referrers, traffic sources breakdown, device breakdown, session metrics, bot vs human traffic analysis, UTM campaign analytics, and daily traffic time series.
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                     |
-| ---------------- | -------- | -------- | ----------------------------------------------- |
-| `days`           | `number` | No       | Number of days to analyze (default 30, max 365) |
-| `organizationId` | `number` | No       | Organization to query                           |
+| Parameter        | Type     | Required | Description                                                                                               |
+| ---------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                          |
+| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days |
+| `organizationId` | `number` | No       | Organization to query                                                                                    |
 
 **Returns:**
 
@@ -268,10 +278,11 @@ Quick traffic overview with key metrics only. Use this for a fast snapshot; use 
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                     |
-| ---------------- | -------- | -------- | ----------------------------------------------- |
-| `days`           | `number` | No       | Number of days to analyze (default 30, max 365) |
-| `organizationId` | `number` | No       | Organization to query                           |
+| Parameter        | Type     | Required | Description                                                                                               |
+| ---------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                          |
+| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days |
+| `organizationId` | `number` | No       | Organization to query                                                                                    |
 
 **Returns:**
 
@@ -340,10 +351,11 @@ Filters your website traffic to show only visits originating from AI/LLM platfor
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                     |
-| ---------------- | -------- | -------- | ----------------------------------------------- |
-| `days`           | `number` | No       | Number of days to analyze (default 30, max 365) |
-| `organizationId` | `number` | No       | Organization to query                           |
+| Parameter        | Type     | Required | Description                                                                                               |
+| ---------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                          |
+| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days |
+| `organizationId` | `number` | No       | Organization to query                                                                                    |
 
 **Returns:**
 
@@ -355,7 +367,8 @@ Filters your website traffic to show only visits originating from AI/LLM platfor
 | `totalLlmVisitors` | `number` | Combined unique visitors from AI sources       |
 | `referrerVisits`   | `number` | Visits from referrer domains only              |
 | `utmVisits`        | `number` | Visits from UTM sources only                   |
-| `daysAnalyzed`     | `number` | Actual days window used                        |
+| `startDate`        | `string` | Start of the window analyzed (`YYYY-MM-DD`)    |
+| `endDate`          | `string` | End of the window analyzed (`YYYY-MM-DD`)      |
 
 ---
 
@@ -387,6 +400,37 @@ Get individual AI SEO check results for your organization. Without `auditId`, li
 | `organizationId` | `number` | No       | Organization to query                                             |
 
 **Returns:** When `auditId` is provided: `audit` metadata and `checks` array with per-check pass/fail status, scores, and details. When omitted: `audits` array of recent single-page audits.
+
+---
+
+### `get_prompt_mention_rates`
+
+Per-prompt mention rate (share of responses mentioning your brand) for each tracked prompt, compared across two consecutive 14-day windows. Results are sorted by absolute change, descending.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                                                       |
+| ---------------- | -------- | -------- | -------------------------------------------------------------------------------- |
+| `asOfDate`       | `string` | No       | End date of the current 14-day window in `YYYY-MM-DD` format. Omit for today      |
+| `organizationId` | `number` | No       | Organization to query                                                            |
+
+**Returns:** `prompts` — per-prompt current and previous mention rate (0–1 fractions) plus response counts per window; `asOfDate` and `windowDays` echoing the window used.
+
+---
+
+### `generate_report`
+
+Generate a complete performance report for your brand over any date range (a full month, a half month, or a custom span). Assembles five sections — visibility metrics, citation growth, content performance, prompt coverage wins, and technical — with display-ready numbers, deltas resolved against the equal-length window immediately before the range, and top movers pre-selected.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                              |
+| ---------------- | -------- | -------- | ------------------------------------------------------- |
+| `startDate`      | `string` | Yes      | Inclusive start of the reporting range in `YYYY-MM-DD` format |
+| `endDate`        | `string` | Yes      | Inclusive end of the reporting range in `YYYY-MM-DD` format   |
+| `organizationId` | `number` | No       | Organization to query                                  |
+
+**Returns:** `report` — the assembled report object with all five sections; `format_guide` — guidance for narrating the report as prose.
 
 ---
 
@@ -487,3 +531,5 @@ Once connected, you can ask your AI tool questions like:
 - "How has my visibility changed over the last two weeks?"
 - "Which LLMs mention my competitors the most?"
 - "Show me citation trends for my different organizations"
+- "Generate a performance report for last month"
+- "Which prompts gained or lost the most visibility over the last two weeks?"
