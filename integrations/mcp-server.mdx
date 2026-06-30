@@ -389,17 +389,17 @@ List full-site AI SEO crawls for the organization, most recent first. Each crawl
 
 ### `get_ai_seo_audit_checks`
 
-Get individual AI SEO check results for your organization. Without `auditId`, lists recent single-page audits. With `auditId`, returns the full list of individual checks (e.g. `robots_present`, `canonical`, `title_description`, `structured_data`) with pass/fail status, scores, and details.
+Get AI SEO check results for your organization from a site crawl. Without `auditId`, lists recent crawls. With `auditId` (a crawl ID, e.g. from `list_ai_seo_crawls`), returns the crawl's site-wide checks (e.g. `robots_present`, `sitemap`, `llms_txt`), post-crawl checks, and per-page individual checks (e.g. `canonical`, `title_description`, `structured_data`) with pass/fail status, scores, and details. Pages are returned worst-scoring first and capped at 100; `totalPages` reports the full count so you can tell when the list is truncated.
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                                       |
-| ---------------- | -------- | -------- | ----------------------------------------------------------------- |
-| `auditId`        | `number` | No       | Specific audit ID to fetch checks for. Omit to list recent audits |
-| `limit`          | `number` | No       | Max audits to list when `auditId` is omitted (default 10, max 20) |
-| `organizationId` | `number` | No       | Organization to query                                             |
+| Parameter        | Type     | Required | Description                                                          |
+| ---------------- | -------- | -------- | ------------------------------------------------------------------- |
+| `auditId`        | `number` | No       | Specific crawl ID to fetch checks for. Omit to list recent crawls   |
+| `limit`          | `number` | No       | Max crawls to list when `auditId` is omitted (default 10, max 20)   |
+| `organizationId` | `number` | No       | Organization to query                                               |
 
-**Returns:** When `auditId` is provided: `audit` metadata and `checks` array with per-check pass/fail status, scores, and details. When omitted: `audits` array of recent single-page audits.
+**Returns:** When `auditId` is provided: `crawl` metadata (domain, status, scores), `siteWideChecks`, `postCrawlChecks`, `totalPages` (full page count), and `pages` — the worst-scoring pages first (capped at 100), each with its own `checks` (per-check pass/fail status, scores, and details). When omitted: `crawls` array of recent crawls with crawl ID, domain, status, and score breakdowns.
 
 ---
 
