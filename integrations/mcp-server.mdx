@@ -10,7 +10,7 @@ description: "Connect AI coding tools to your Pierview data via the Model Contex
 
 ## Overview
 
-The Pierview MCP server lets AI tools like Claude Desktop and Claude Code query your AI visibility data directly. Ask questions about your citations, key metrics, and competitor mentions without leaving your workflow.
+The Pierview MCP server lets AI tools like Claude Desktop and Claude Code query your AI visibility data directly. Ask questions about your citations, key metrics, and competitor mentions without leaving your workflow. You can also read and edit your [brand kit](#update-brand-kit) — have Claude structure your brand guidelines and save them back to Pierview.
 
 Authentication is secured using OAuth with OIDC with PKCE.
 
@@ -345,6 +345,53 @@ AI-extracted facts about your own brand from LLM visibility responses. Returns a
 
 ---
 
+### `get_brand_kit`
+
+Read your organization's brand kit — the structured brand guidelines used to keep generated content on-brand. This is your own authored content (not AI-extracted), edited from the Brand Kit section of the dashboard or via `update_brand_kit`.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description           |
+| ---------------- | -------- | -------- | --------------------- |
+| `organizationId` | `number` | No       | Organization to query |
+
+**Returns:**
+
+| Field              | Type             | Description                                                            |
+| ------------------ | ---------------- | --------------------------------------------------------------------- |
+| `configured`       | `boolean`        | Whether a brand kit row exists yet for the organization               |
+| `brandDescription` | `string \| null` | What the brand/company does, in plain language                        |
+| `brandVoice`       | `string \| null` | Tone and voice guidelines                                             |
+| `authorPersona`    | `string \| null` | The persona/POV content should be written from                        |
+| `writingRules`     | `string \| null` | Specific writing rules, style constraints, or do/don't guidance       |
+| `productLines`     | `array`          | Product lines, each with a `title` and `description` (empty if none)  |
+| `updatedAt`        | `string \| null` | When the brand kit was last updated                                   |
+
+---
+
+### `update_brand_kit`
+
+<Info>
+  **Write tool.** Unlike the read-only data tools, `update_brand_kit` modifies your brand kit. It is annotated `destructiveHint` so MCP clients can prompt for confirmation before running it.
+</Info>
+
+Update your organization's brand kit / brand guidelines. Only the fields you provide are changed — omitted fields keep their current value. Use this to write structured brand guidance (e.g. distilled from documents or notes you share) into the brand kit. Provide at least one field.
+
+**Parameters:**
+
+| Parameter          | Type     | Required | Description                                                                                       |
+| ------------------ | -------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `brandDescription` | `string` | No       | What the brand/company does, in plain language                                                   |
+| `brandVoice`       | `string` | No       | Tone and voice guidelines, e.g. "confident, concise, no jargon"                                   |
+| `authorPersona`    | `string` | No       | The persona/POV content should be written from                                                   |
+| `writingRules`     | `string` | No       | Specific writing rules, style constraints, or do/don't guidance                                  |
+| `productLines`     | `array`  | No       | Full replacement list of product lines, each `{ title, description }` — not merged with existing |
+| `organizationId`   | `number` | No       | Organization to update                                                                           |
+
+**Returns:** The updated brand kit (`brandDescription`, `brandVoice`, `authorPersona`, `writingRules`, `productLines`, `updatedAt`).
+
+---
+
 ### `get_llm_referral_traffic`
 
 Filters your website traffic to show only visits originating from AI/LLM platforms (ChatGPT, Claude, Perplexity, Gemini, Copilot, and others). Covers both direct referrer domains and UTM-tagged sources.
@@ -533,3 +580,6 @@ Once connected, you can ask your AI tool questions like:
 - "Show me citation trends for my different organizations"
 - "Generate a performance report for last month"
 - "Which prompts gained or lost the most visibility over the last two weeks?"
+- "What's in my brand kit?"
+- "Here are our brand guidelines — structure them and save them to my brand kit"
+- "Update my brand voice to be more concise and technical"
