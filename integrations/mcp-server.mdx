@@ -10,7 +10,7 @@ description: "Connect AI coding tools to your Pierview data via the Model Contex
 
 ## Overview
 
-The Pierview MCP server lets AI tools like Claude Desktop and Claude Code query your AI visibility data directly. Ask questions about your citations, key metrics, and competitor mentions without leaving your workflow. You can also read and edit your [brand kit](#update-brand-kit) — have Claude structure your brand guidelines and save them back to Pierview.
+The Pierview connector lets Claude on the web, Desktop, mobile, and Claude Code query your AI visibility data directly. Ask questions about your citations, key metrics, and competitor mentions without leaving your workflow. You can also read and edit your [brand kit](#update-brand-kit) — have Claude structure your brand guidelines and save them back to Pierview.
 
 Authentication is secured using OAuth with OIDC with PKCE.
 
@@ -23,37 +23,43 @@ Authentication is secured using OAuth with OIDC with PKCE.
 <Tabs>
   <Tab title="Claude Desktop">
     <Steps>
-      <Step title="Open Claude Desktop settings">
-        Go to **Claude Desktop** > **Customize** > **Connectors** > **+** > **Add custom connector**.
+      <Step title="Browse connectors">
+        Open Claude settings, select **Connectors** under **Customize**, click **Add**, then select **Browse connectors**.
+
+        <img src="/images/mcp/claude-browse-connectors.png" alt="Claude connector settings with the Browse connectors option highlighted" />
       </Step>
-      <Step title="Add the MCP server">
-        Add the following details as prompted:
-        - **Name**: **Pierview**
-        - **Remote MCP Server URL**: **https://mcp.pierview.ai**
-        <Frame caption="Claude Desktop MCP connector">
-          <img src="/images/mcp/claude-connector.png" alt="Claude Desktop MCP connector" />
-        </Frame>
+      <Step title="Find Pierview">
+        In the directory, select **Connectors**, search for **Pierview**, then select the Pierview connector.
+
+        <img src="/images/mcp/claude-search-pierview.png" alt="Pierview shown in the Claude Connectors Directory search results" />
       </Step>
-      <Step title="Authenticate">
-        Click the Connect button, follow the authentication steps which will request access to your Pierview data on behalf of Claude.
+      <Step title="Connect and authenticate">
+        Review the connector details, click **Connect**, then sign in to Pierview and approve access to your data.
+
+        <img src="/images/mcp/claude-connect-pierview.png" alt="Pierview connector details with the Connect button" />
       </Step>
     </Steps>
+
+    <Note>
+      On Claude Team and Enterprise plans, an organization owner may need to add Pierview from **Organization settings** > **Connectors** before members can connect their accounts.
+    </Note>
   </Tab>
   <Tab title="Claude Code">
     <Steps>
-      <Step title="Add the MCP server">
-        Run the following command in your terminal:
-        ```bash
-        claude mcp add pierview --transport http https://mcp.pierview.ai
-        ```
+      <Step title="Connect Pierview to Claude">
+        Follow the steps in the **Claude Desktop** tab to connect Pierview from the Connectors Directory.
       </Step>
       <Step title="Start Claude Code">
-        Run `claude` in your terminal. You will be prompted to sign in with your Pierview account on first use.
+        Run `claude` in your terminal and sign in with the same Claude account you used to connect Pierview.
       </Step>
-      <Step title="Authenticate">
-        Run the ```/mcp``` command in your Claude Code instance. This will allow you to select the pierview mcp server. On authentication, it'll prompt you to login via the browser.
+      <Step title="Verify the connection">
+        Run `/mcp` in Claude Code and confirm that Pierview is connected.
       </Step>
     </Steps>
+
+    <Note>
+      For API-key authentication or project-specific configuration, use the manual setup instructions in [API Keys](#api-keys).
+    </Note>
   </Tab>
   <Tab title="Agent SDK">
     Use [Anthropic's Claude Agent SDK](https://github.com/anthropics/claude-agent-sdk) to build custom AI agents that query your Pierview data programmatically. Requires a Pierview [API key](#api-keys) and an [Anthropic API key](https://console.anthropic.com/).
