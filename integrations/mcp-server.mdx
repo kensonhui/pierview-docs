@@ -24,7 +24,7 @@ Authentication is secured using OAuth with OIDC with PKCE.
   <Tab title="Claude web & Desktop">
     <Steps>
       <Step title="Browse connectors">
-        Open Claude settings, select **Connectors** under **Customize**, click **Add**, then select **Browse connectors**.
+        Open **Settings**, select **Connectors** under **Customize**, click **Add**, then select **Browse connectors**.
 
         <img src="/images/mcp/claude-browse-connectors.png" alt="Claude connector settings with the Browse connectors option highlighted" />
       </Step>
@@ -41,14 +41,18 @@ Authentication is secured using OAuth with OIDC with PKCE.
     <Note>
       On Claude Team and Enterprise plans, an organization owner may need to add Pierview from **Organization settings** > **Connectors** before members can connect their accounts.
     </Note>
+
   </Tab>
   <Tab title="Claude Code">
     <Steps>
-      <Step title="Connect Pierview to Claude">
-        Follow the steps in the **Claude web & Desktop** tab to connect Pierview from the Connectors Directory.
+      <Step title="Add the MCP server">
+        Run the following command in your terminal:
+        ```bash
+        claude mcp add pierview --transport http https://mcp.pierview.ai
+        ```
       </Step>
       <Step title="Start Claude Code">
-        Run `claude` in your terminal and sign in with the same Claude account you used to connect Pierview.
+        Run `claude` in your terminal.
       </Step>
       <Step title="Verify the connection">
         Run `/mcp` in Claude Code and confirm that Pierview is connected.
@@ -58,6 +62,7 @@ Authentication is secured using OAuth with OIDC with PKCE.
     <Note>
       For API-key authentication or project-specific configuration, use the manual setup instructions in [API Keys](#api-keys).
     </Note>
+
   </Tab>
   <Tab title="Agent SDK">
     Use [Anthropic's Claude Agent SDK](https://github.com/anthropics/claude-agent-sdk) to build custom AI agents that query your Pierview data programmatically. Requires a Pierview [API key](#api-keys) and an [Anthropic API key](https://console.anthropic.com/).
@@ -151,11 +156,11 @@ Get mention rate, average ranking, and share of voice for your organization (sam
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                                                                            |
-| ---------------- | -------- | -------- | ----------------------------------------------------------------------------------------------------- |
-| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                       |
+| Parameter        | Type     | Required | Description                                                                                               |
+| ---------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                          |
 | `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days |
-| `organizationId` | `number` | No       | Organization to query (defaults to your default org)                                                  |
+| `organizationId` | `number` | No       | Organization to query (defaults to your default org)                                                      |
 
 **Returns:**
 
@@ -173,14 +178,14 @@ Get top cited hosts/domains with citation counts and per-LLM breakdown. The prev
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                                                                                     |
-| ---------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------- |
-| `limit`          | `number` | No       | Max hosts to return (default 50, max 500; the dashboard API caps at 200)                                       |
-| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                               |
-| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days      |
-| `granularity`    | `string` | No       | `week` (default) compares this week vs last week; `month` compares calendar months. Ignored when both dates set |
+| Parameter        | Type     | Required | Description                                                                                                                                      |
+| ---------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `limit`          | `number` | No       | Max hosts to return (default 50, max 500; the dashboard API caps at 200)                                                                         |
+| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                                                                 |
+| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days                                        |
+| `granularity`    | `string` | No       | `week` (default) compares this week vs last week; `month` compares calendar months. Ignored when both dates set                                  |
 | `cumulativeAsOf` | `string` | No       | When set (`YYYY-MM-DD`), adds `cumulative_current`/`cumulative_previous` (all citations ever up to that date vs end of the prior calendar month) |
-| `organizationId` | `number` | No       | Organization to query                                                                                          |
+| `organizationId` | `number` | No       | Organization to query                                                                                                                            |
 
 **Returns:** Cited hosts with total counts, period-over-period deltas, and per-LLM citation breakdowns.
 
@@ -193,12 +198,12 @@ Get top cited pages (URLs) with period citation metrics and per-LLM breakdown. T
 **Parameters:**
 
 | Parameter        | Type     | Required | Description                                                                                                     |
-| ---------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------- |
-| `limit`          | `number` | No       | Max pages to return (default 50, max 500)                                                                      |
-| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                               |
-| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days      |
+| ---------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------- |
+| `limit`          | `number` | No       | Max pages to return (default 50, max 500)                                                                       |
+| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                                |
+| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days       |
 | `granularity`    | `string` | No       | `week` (default) compares this week vs last week; `month` compares calendar months. Ignored when both dates set |
-| `organizationId` | `number` | No       | Organization to query                                                                                          |
+| `organizationId` | `number` | No       | Organization to query                                                                                           |
 
 **Returns:** Cited pages with URL, title, total counts, and per-LLM citation breakdowns.
 
@@ -210,11 +215,11 @@ Get visibility trends over time by competitor. Returns at most 12 x-axis points 
 
 **Parameters:**
 
-| Parameter        | Type      | Required | Description                                                                                                  |
-| ---------------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------- |
-| `webSearch`      | `boolean` | No       | Filter by web search enabled responses (default `true`)                                                     |
+| Parameter        | Type      | Required | Description                                                                                               |
+| ---------------- | --------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| `webSearch`      | `boolean` | No       | Filter by web search enabled responses (default `true`)                                                   |
 | `granularity`    | `string`  | No       | `auto` (default), `daily`, `weekly`, or `monthly`. `auto` picks the coarsest bucket that keeps ≤12 points |
-| `organizationId` | `number`  | No       | Organization to query                                                                                       |
+| `organizationId` | `number`  | No       | Organization to query                                                                                     |
 
 **Returns:** Per-competitor time series with mention rates per time bucket.
 
@@ -257,10 +262,10 @@ Full website traffic analytics for your organization (same data as Dashboard →
 **Parameters:**
 
 | Parameter        | Type     | Required | Description                                                                                               |
-| ---------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| ---------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------- |
 | `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                          |
 | `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days |
-| `organizationId` | `number` | No       | Organization to query                                                                                    |
+| `organizationId` | `number` | No       | Organization to query                                                                                     |
 
 **Returns:**
 
@@ -283,10 +288,10 @@ Quick traffic overview with key metrics only. Use this for a fast snapshot; use 
 **Parameters:**
 
 | Parameter        | Type     | Required | Description                                                                                               |
-| ---------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| ---------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------- |
 | `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                          |
 | `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days |
-| `organizationId` | `number` | No       | Organization to query                                                                                    |
+| `organizationId` | `number` | No       | Organization to query                                                                                     |
 
 **Returns:**
 
@@ -307,11 +312,11 @@ Brand sentiment analysis derived from LLM visibility responses. Returns an avera
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                                    |
-| ---------------- | -------- | -------- | -------------------------------------------------------------- |
+| Parameter        | Type     | Required | Description                                                   |
+| ---------------- | -------- | -------- | ------------------------------------------------------------- |
 | `llmId`          | `number` | No       | Filter to a specific LLM by ID. Omit for all LLMs             |
 | `days`           | `number` | No       | Restrict to responses from the last N days. Omit for all time |
-| `organizationId` | `number` | No       | Organization to query                                          |
+| `organizationId` | `number` | No       | Organization to query                                         |
 
 **Returns:** Average sentiment score (0–100), sentiment distribution counts, per-platform breakdown, and lists of top brand strengths and weaknesses.
 
@@ -323,11 +328,11 @@ AI-extracted facts about your tracked competitors from LLM visibility responses.
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                                    |
-| ---------------- | -------- | -------- | -------------------------------------------------------------- |
+| Parameter        | Type     | Required | Description                                                   |
+| ---------------- | -------- | -------- | ------------------------------------------------------------- |
 | `llmId`          | `number` | No       | Filter to a specific LLM by ID. Omit for all LLMs             |
 | `days`           | `number` | No       | Restrict to responses from the last N days. Omit for all time |
-| `organizationId` | `number` | No       | Organization to query                                          |
+| `organizationId` | `number` | No       | Organization to query                                         |
 
 **Returns:** `competitorGroups` — array of competitors, each with up to 15 extracted facts and a sentiment score.
 
@@ -339,11 +344,11 @@ AI-extracted facts about your own brand from LLM visibility responses. Returns a
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                                    |
-| ---------------- | -------- | -------- | -------------------------------------------------------------- |
+| Parameter        | Type     | Required | Description                                                   |
+| ---------------- | -------- | -------- | ------------------------------------------------------------- |
 | `llmId`          | `number` | No       | Filter to a specific LLM by ID. Omit for all LLMs             |
 | `days`           | `number` | No       | Restrict to responses from the last N days. Omit for all time |
-| `organizationId` | `number` | No       | Organization to query                                          |
+| `organizationId` | `number` | No       | Organization to query                                         |
 
 **Returns:** `attributes` — per-category breakdown with positive/negative counts; `brandFacts` — up to 40 specific extracted facts with polarity.
 
@@ -361,32 +366,34 @@ Read your organization's brand kit — the structured brand guidelines used to k
 
 **Returns:**
 
-| Field              | Type             | Description                                                            |
-| ------------------ | ---------------- | --------------------------------------------------------------------- |
-| `configured`       | `boolean`        | Whether a brand kit row exists yet for the organization               |
-| `brandDescription` | `string \| null` | What the brand/company does, in plain language                        |
-| `brandVoice`       | `string \| null` | Tone and voice guidelines                                             |
-| `authorPersona`    | `string \| null` | The persona/POV content should be written from                        |
-| `writingRules`     | `string \| null` | Specific writing rules, style constraints, or do/don't guidance       |
-| `productLines`     | `array`          | Product lines, each with a `title` and `description` (empty if none)  |
-| `updatedAt`        | `string \| null` | When the brand kit was last updated                                   |
+| Field              | Type             | Description                                                          |
+| ------------------ | ---------------- | -------------------------------------------------------------------- |
+| `configured`       | `boolean`        | Whether a brand kit row exists yet for the organization              |
+| `brandDescription` | `string \| null` | What the brand/company does, in plain language                       |
+| `brandVoice`       | `string \| null` | Tone and voice guidelines                                            |
+| `authorPersona`    | `string \| null` | The persona/POV content should be written from                       |
+| `writingRules`     | `string \| null` | Specific writing rules, style constraints, or do/don't guidance      |
+| `productLines`     | `array`          | Product lines, each with a `title` and `description` (empty if none) |
+| `updatedAt`        | `string \| null` | When the brand kit was last updated                                  |
 
 ---
 
 ### `update_brand_kit`
 
 <Info>
-  **Write tool.** Unlike the read-only data tools, `update_brand_kit` modifies your brand kit. It is annotated `destructiveHint` so MCP clients can prompt for confirmation before running it.
+  **Write tool.** Unlike the read-only data tools, `update_brand_kit` modifies
+  your brand kit. It is annotated `destructiveHint` so MCP clients can prompt
+  for confirmation before running it.
 </Info>
 
 Update your organization's brand kit / brand guidelines. Only the fields you provide are changed — omitted fields keep their current value. Use this to write structured brand guidance (e.g. distilled from documents or notes you share) into the brand kit. Provide at least one field.
 
 **Parameters:**
 
-| Parameter          | Type     | Required | Description                                                                                       |
+| Parameter          | Type     | Required | Description                                                                                      |
 | ------------------ | -------- | -------- | ------------------------------------------------------------------------------------------------ |
 | `brandDescription` | `string` | No       | What the brand/company does, in plain language                                                   |
-| `brandVoice`       | `string` | No       | Tone and voice guidelines, e.g. "confident, concise, no jargon"                                   |
+| `brandVoice`       | `string` | No       | Tone and voice guidelines, e.g. "confident, concise, no jargon"                                  |
 | `authorPersona`    | `string` | No       | The persona/POV content should be written from                                                   |
 | `writingRules`     | `string` | No       | Specific writing rules, style constraints, or do/don't guidance                                  |
 | `productLines`     | `array`  | No       | Full replacement list of product lines, each `{ title, description }` — not merged with existing |
@@ -403,10 +410,10 @@ Filters your website traffic to show only visits originating from AI/LLM platfor
 **Parameters:**
 
 | Parameter        | Type     | Required | Description                                                                                               |
-| ---------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------- |
+| ---------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------- |
 | `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 14 days before `endDate`                          |
 | `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today. If both dates omitted, uses the past 14 days |
-| `organizationId` | `number` | No       | Organization to query                                                                                    |
+| `organizationId` | `number` | No       | Organization to query                                                                                     |
 
 **Returns:**
 
@@ -444,11 +451,11 @@ Get AI SEO check results for your organization from a site crawl. Without `audit
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                                          |
-| ---------------- | -------- | -------- | ------------------------------------------------------------------- |
-| `auditId`        | `number` | No       | Specific crawl ID to fetch checks for. Omit to list recent crawls   |
-| `limit`          | `number` | No       | Max crawls to list when `auditId` is omitted (default 10, max 20)   |
-| `organizationId` | `number` | No       | Organization to query                                               |
+| Parameter        | Type     | Required | Description                                                       |
+| ---------------- | -------- | -------- | ----------------------------------------------------------------- |
+| `auditId`        | `number` | No       | Specific crawl ID to fetch checks for. Omit to list recent crawls |
+| `limit`          | `number` | No       | Max crawls to list when `auditId` is omitted (default 10, max 20) |
+| `organizationId` | `number` | No       | Organization to query                                             |
 
 **Returns:** When `auditId` is provided: `crawl` metadata (domain, status, scores), `siteWideChecks`, `postCrawlChecks`, `totalPages` (full page count), and `pages` — the worst-scoring pages first (capped at 100), each with its own `checks` (per-check pass/fail status, scores, and details). When omitted: `crawls` array of recent crawls with crawl ID, domain, status, and score breakdowns.
 
@@ -460,10 +467,10 @@ Per-prompt mention rate (share of responses mentioning your brand) for each trac
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                                                       |
-| ---------------- | -------- | -------- | -------------------------------------------------------------------------------- |
-| `asOfDate`       | `string` | No       | End date of the current 14-day window in `YYYY-MM-DD` format. Omit for today      |
-| `organizationId` | `number` | No       | Organization to query                                                            |
+| Parameter        | Type     | Required | Description                                                                  |
+| ---------------- | -------- | -------- | ---------------------------------------------------------------------------- |
+| `asOfDate`       | `string` | No       | End date of the current 14-day window in `YYYY-MM-DD` format. Omit for today |
+| `organizationId` | `number` | No       | Organization to query                                                        |
 
 **Returns:** `prompts` — per-prompt current and previous mention rate (0–1 fractions) plus response counts per window; `asOfDate` and `windowDays` echoing the window used.
 
@@ -475,11 +482,11 @@ Generate a complete performance report for your brand over any date range (a ful
 
 **Parameters:**
 
-| Parameter        | Type     | Required | Description                                              |
-| ---------------- | -------- | -------- | ------------------------------------------------------- |
+| Parameter        | Type     | Required | Description                                                   |
+| ---------------- | -------- | -------- | ------------------------------------------------------------- |
 | `startDate`      | `string` | Yes      | Inclusive start of the reporting range in `YYYY-MM-DD` format |
 | `endDate`        | `string` | Yes      | Inclusive end of the reporting range in `YYYY-MM-DD` format   |
-| `organizationId` | `number` | No       | Organization to query                                  |
+| `organizationId` | `number` | No       | Organization to query                                         |
 
 **Returns:** `report` — the assembled report object with all five sections; `format_guide` — guidance for narrating the report as prose.
 
