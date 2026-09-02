@@ -3,6 +3,14 @@
   "theme": "mint",
   "name": "Pierview AI",
   "description": "AI visibility platform for brands",
+  "seo": {
+    "indexing": "navigable",
+    "organization": {
+      "id": "https://pierview.ai/#organization",
+      "name": "Pierview AI",
+      "url": "https://pierview.ai"
+    }
+  },
   "colors": {
     "primary": "#2b7fff",
     "light": "#2b7fff",
@@ -105,7 +113,8 @@
             "group": "Help",
             "pages": [
               "support/troubleshooting",
-              "support/faq"
+              "support/faq",
+              "support/glossary"
             ]
           }
         ]
