@@ -32,6 +32,7 @@
             "icon": "rocket",
             "pages": [
               "index",
+              "introduction/what-is-pierview",
               "introduction/quickstart",
               {
                 "group": "Main metrics",
@@ -49,8 +50,7 @@
             "icon": "wrench",
             "pages": [
               "core-features/monitoring/prompts",
-              "core-features/monitoring/brands",
-              "playbooks/outrank-competitor-perplexity"
+              "core-features/monitoring/brands"
             ]
           },
           {
@@ -60,7 +60,18 @@
               "core-features/analysis/citations",
               "core-features/analysis/perception",
               "core-features/actions/reports",
-              "core-features/analysis/sources"
+              "core-features/analysis/sources",
+              "core-features/actions/optimization"
+            ]
+          },
+          {
+            "group": "Playbooks",
+            "icon": "list-check",
+            "pages": [
+              "playbooks/overview",
+              "playbooks/best-x-page-citations",
+              "playbooks/outrank-competitor-perplexity",
+              "playbooks/source-gaps-pr-pitch"
             ]
           },
           {
@@ -89,6 +100,15 @@
             ]
           },
           {
+            "group": "AI Tools",
+            "icon": "terminal",
+            "pages": [
+              "ai-tools/claude-code",
+              "ai-tools/cursor",
+              "ai-tools/windsurf"
+            ]
+          },
+          {
             "group": "AI Agent Analytics",
             "icon": "robot",
             "pages": [
@@ -114,7 +134,14 @@
             "pages": [
               "support/troubleshooting",
               "support/faq",
-              "support/glossary"
+              "support/glossary",
+              "support/security-privacy"
+            ]
+          },
+          {
+            "group": "Updates",
+            "pages": [
+              "support/changelog"
             ]
           }
         ]
