@@ -6,9 +6,14 @@
   "seo": {
     "indexing": "navigable",
     "organization": {
-      "id": "https://pierview.ai/#organization",
+      "id": "https://www.pierview.ai/#organization",
       "name": "Pierview AI",
-      "url": "https://pierview.ai"
+      "url": "https://www.pierview.ai",
+      "logo": "https://www.pierview.ai/pierview-icon.png",
+      "sameAs": [
+        "https://linkedin.com/company/pierview",
+        "https://x.com/Pierviewai"
+      ]
     }
   },
   "colors": {
@@ -34,6 +39,7 @@
               "index",
               "introduction/what-is-pierview",
               "introduction/quickstart",
+              "introduction/key-terminology",
               {
                 "group": "Main metrics",
                 "expanded": false,
