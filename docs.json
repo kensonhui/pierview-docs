@@ -3,6 +3,19 @@
   "theme": "mint",
   "name": "Pierview AI",
   "description": "AI visibility platform for brands",
+  "seo": {
+    "indexing": "navigable",
+    "organization": {
+      "id": "https://www.pierview.ai/#organization",
+      "name": "Pierview AI",
+      "url": "https://www.pierview.ai",
+      "logo": "https://www.pierview.ai/pierview-icon.png",
+      "sameAs": [
+        "https://linkedin.com/company/pierview",
+        "https://x.com/Pierviewai"
+      ]
+    }
+  },
   "colors": {
     "primary": "#2b7fff",
     "light": "#2b7fff",
@@ -24,7 +37,9 @@
             "icon": "rocket",
             "pages": [
               "index",
+              "introduction/what-is-pierview",
               "introduction/quickstart",
+              "introduction/key-terminology",
               {
                 "group": "Main metrics",
                 "expanded": false,
@@ -41,8 +56,7 @@
             "icon": "wrench",
             "pages": [
               "core-features/monitoring/prompts",
-              "core-features/monitoring/brands",
-              "playbooks/outrank-competitor-perplexity"
+              "core-features/monitoring/brands"
             ]
           },
           {
@@ -52,7 +66,18 @@
               "core-features/analysis/citations",
               "core-features/analysis/perception",
               "core-features/actions/reports",
-              "core-features/analysis/sources"
+              "core-features/analysis/sources",
+              "core-features/actions/optimization"
+            ]
+          },
+          {
+            "group": "Playbooks",
+            "icon": "list-check",
+            "pages": [
+              "playbooks/overview",
+              "playbooks/best-x-page-citations",
+              "playbooks/outrank-competitor-perplexity",
+              "playbooks/source-gaps-pr-pitch"
             ]
           },
           {
@@ -81,6 +106,15 @@
             ]
           },
           {
+            "group": "AI Tools",
+            "icon": "terminal",
+            "pages": [
+              "ai-tools/claude-code",
+              "ai-tools/cursor",
+              "ai-tools/windsurf"
+            ]
+          },
+          {
             "group": "AI Agent Analytics",
             "icon": "robot",
             "pages": [
@@ -105,7 +139,15 @@
             "group": "Help",
             "pages": [
               "support/troubleshooting",
-              "support/faq"
+              "support/faq",
+              "support/glossary",
+              "support/security-privacy"
+            ]
+          },
+          {
+            "group": "Updates",
+            "pages": [
+              "support/changelog"
             ]
           }
         ]
