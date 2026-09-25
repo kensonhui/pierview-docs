@@ -18,6 +18,10 @@ Once connected, Pierview creates a log drain on your Vercel project. Vercel stre
 | Anthropic | ClaudeBot, Claude-User, Claude-SearchBot |
 | Google | Google-Extended, Google-CloudVertexBot |
 
+<Warning>
+  The Vercel integration requires a Vercel **Pro** or **Enterprise** plan. Pierview tracks AI crawlers through Vercel Log Drains, which are not available on the Hobby plan. If your team is on Hobby, the connection will fail until you upgrade.
+</Warning>
+
 ## Step 1: Connect Your Vercel Account
 
 1. In Pierview, go to **Traffic Analysis** from the sidebar.
@@ -73,6 +77,9 @@ This removes the log drain from your Vercel project and stops all data collectio
   </Accordion>
   <Accordion title="'No Log Drain' badge after connecting">
     Log drain creation may have failed during setup. Try disconnecting and reconnecting the integration. If the issue persists, contact support.
+  </Accordion>
+  <Accordion title="Connection fails with a message about Log Drains">
+    Vercel only offers Log Drains on the Pro and Enterprise plans. Upgrade the Vercel team you selected during authorization to Pro or Enterprise, then connect again.
   </Accordion>
   <Accordion title="Can I monitor multiple Vercel projects?">
     The integration currently supports one Vercel connection per Pierview organization. The log drain will capture traffic across all projects in the selected scope.
