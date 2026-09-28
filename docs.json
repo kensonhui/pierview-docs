@@ -106,15 +106,6 @@
             ]
           },
           {
-            "group": "AI Tools",
-            "icon": "terminal",
-            "pages": [
-              "ai-tools/claude-code",
-              "ai-tools/cursor",
-              "ai-tools/windsurf"
-            ]
-          },
-          {
             "group": "AI Agent Analytics",
             "icon": "robot",
             "pages": [
