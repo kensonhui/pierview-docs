@@ -496,6 +496,91 @@ Per-prompt mention rate (share of responses mentioning your brand) for each trac
 
 ---
 
+### `list_prompts`
+
+List your organization's tracked prompts, as shown on the Prompts page, with each prompt's persona and estimated monthly prompt volume. `volume` is the same figure as the dashboard's Prompt Volume column: an estimate of monthly AI search volume built from the prompt's keywords, rounded, and `null` where the dashboard shows no figure. Prompts are sorted by volume, highest first, like the dashboard's By Volume view.
+
+**Parameters:**
+
+| Parameter        | Type      | Required | Description                                                                       |
+| ---------------- | --------- | -------- | --------------------------------------------------------------------------------- |
+| `personaId`      | `number`  | No       | Only return prompts assigned to this persona                                      |
+| `includeVolume`  | `boolean` | No       | Set `false` to skip the volume lookup when you only need the list. Default `true` |
+| `organizationId` | `number`  | No       | Organization to query                                                             |
+
+**Returns:**
+
+| Field        | Type     | Description                                                                                    |
+| ------------ | -------- | ---------------------------------------------------------------------------------------------- |
+| `prompts`    | `array`  | Each prompt's `promptId`, `prompt`, `personaId`, `personaName`, `source`, and `volume`         |
+| `total`      | `number` | Number of prompts returned                                                                     |
+| `personas`   | `array`  | The organization's personas (`personaId`, `name`), for use with `add_prompt` and `update_prompt` |
+| `volumeUnit` | `string` | What `volume` measures                                                                         |
+
+---
+
+### `add_prompt`
+
+<Info>
+  **Write tool.** Changes which prompts your organization tracks. It is
+  annotated `destructiveHint` so MCP clients can prompt for confirmation.
+</Info>
+
+Start tracking a prompt, optionally assigned to a persona. If the same text is already tracked (ignoring case and surrounding spaces), nothing changes and the existing prompt is returned. If the prompt was tracked before and deleted, it is restored with its history. Adding a prompt counts against your plan's prompt limit. Results appear after the next visibility test run.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                       |
+| ---------------- | -------- | -------- | ------------------------------------------------- |
+| `prompt`         | `string` | Yes      | The prompt text (up to 500 characters)            |
+| `personaId`      | `number` | No       | Persona to assign the prompt to (see `list_prompts`) |
+| `organizationId` | `number` | No       | Organization to update                            |
+
+**Returns:** `status` (`created`, `restored`, or `exists`) and the `prompt`.
+
+---
+
+### `update_prompt`
+
+<Info>
+  **Write tool.** Annotated `destructiveHint`.
+</Info>
+
+Edit a prompt's text, its persona, or both. Changing the text works like editing it on the Prompts page: the old prompt is retired with its history, and a new prompt with a new `promptId` starts collecting results. Pass `personaId: null` to unassign the persona.
+
+**Parameters:**
+
+| Parameter        | Type             | Required | Description                               |
+| ---------------- | ---------------- | -------- | ----------------------------------------- |
+| `promptId`       | `number`         | Yes      | The prompt to edit                        |
+| `prompt`         | `string`         | No       | New prompt text                           |
+| `personaId`      | `number \| null` | No       | Persona to assign, or `null` to unassign  |
+| `organizationId` | `number`         | No       | Organization to update                    |
+
+**Returns:** the updated `prompt`, and `previousPromptId` when the text changed.
+
+---
+
+### `delete_prompt`
+
+<Info>
+  **Write tool.** Annotated `destructiveHint`.
+</Info>
+
+Stop tracking a prompt. Its past responses are kept, and adding the same text again with `add_prompt` restores it.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description            |
+| ---------------- | -------- | -------- | ---------------------- |
+| `promptId`       | `number` | Yes      | The prompt to delete   |
+| `organizationId` | `number` | No       | Organization to update |
+
+**Returns:** `deleted`, `promptId`, and the deleted `prompt` text.
+
+---
+
+
 ### `generate_report`
 
 Generate a complete performance report for your brand over any date range (a full month, a half month, or a custom span). Assembles five sections — visibility metrics, citation growth, content performance, prompt coverage wins, and technical — with display-ready numbers, deltas resolved against the equal-length window immediately before the range, and top movers pre-selected.
