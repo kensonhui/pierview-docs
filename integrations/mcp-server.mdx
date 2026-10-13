@@ -631,7 +631,7 @@ Pass the key as a Bearer token in the `Authorization` header when connecting to 
 <Tabs>
   <Tab title="Claude Code">
     ```bash
-    claude mcp add pierview --transport http https://mcp.pierview.ai/mcp \
+    claude mcp add pierview --transport http https://mcp.pierview.ai/api-key \
       --header "Authorization: Bearer YOUR_API_KEY"
     ```
   </Tab>
@@ -642,7 +642,7 @@ Pass the key as a Bearer token in the `Authorization` header when connecting to 
     {
       "mcpServers": {
         "pierview": {
-          "url": "https://mcp.pierview.ai/mcp",
+          "url": "https://mcp.pierview.ai/api-key",
           "headers": {
             "Authorization": "Bearer YOUR_API_KEY"
           }
@@ -659,7 +659,7 @@ Pass the key as a Bearer token in the `Authorization` header when connecting to 
     {
       "mcpServers": {
         "pierview": {
-          "url": "https://mcp.pierview.ai/mcp",
+          "url": "https://mcp.pierview.ai/api-key",
           "headers": {
             "Authorization": "Bearer YOUR_API_KEY"
           }
