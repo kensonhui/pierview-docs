@@ -52,21 +52,43 @@ Use pitch organizations when you want to:
 | Visibility, sentiment, citations | Yes | Yes |
 | Counts toward billing | No | Yes |
 | Monthly creation limit | Yes | No |
-| Can be converted to standard | Yes | |
+| Can be upgraded to standard | Yes | |
+| Can be deleted | | Yes, on request |
 
 ---
 
-## Converting a pitch organization
+## Upgrading a pitch organization
 
-When a prospective client decides to move forward, you can convert their pitch organization into a full organization. This preserves all existing data and configuration.
+When a prospective client decides to move forward, you can upgrade their pitch organization to a full organization. This preserves all existing data and configuration.
 
 1. Open the pitch organization's settings (via the organization switcher → **Edit**)
-2. Click **Convert to Full Organization**
+2. Click **Upgrade to Full Organization** (or **Upgrade** next to the organization under **Settings → Subscription Plan**)
 3. Confirm, the organization will be added to your subscription and billed accordingly
 
 <Warning>
-  Converting a pitch organization is permanent. It will count toward your billing quantity and the `converted` status cannot be reverted.
+  An upgraded organization counts toward your billing quantity from the moment you upgrade it. To take it off your subscription later, request its deletion (see below).
 </Warning>
+
+---
+
+## Deleting a standard organization
+
+If you no longer need a standard organization, you can ask to delete it. It stops counting toward your billing quantity and is removed from your account. It is not converted to a pitch organization.
+
+1. Go to **Settings → Subscription Plan**
+2. Under **Organizations in this workspace**, click **Delete** next to the organization
+3. Optionally add a reason, then click **Request deletion**
+
+The organization is deleted at the start of your next billing cycle and no longer counts toward your billing from then on. It keeps full access until then, and shows **Deletion requested** in the meantime.
+
+After it is deleted:
+- The organization is removed from your account for everyone in your workspace
+- Its prompts, responses, citations and reports are no longer available
+- Visibility tracking for the organization stops
+
+<Info>
+  Only workspace or organization **Owners** and **Admins** can request a deletion. You can't delete your last full organization; to stop paying entirely, cancel your subscription from the billing portal instead.
+</Info>
 
 ---
 
