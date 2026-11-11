@@ -1,0 +1,53 @@
+---
+title: "PierviewBot"
+description: "What Pierview's site crawler does, how to identify it, and how to opt out"
+author: "Pierview AI"
+---
+
+## What PierviewBot does
+
+PierviewBot is the crawler behind Pierview's AI search readiness audits. When a Pierview customer audits a website they own or manage, PierviewBot reads that site's public pages and checks them for the signals AI search engines rely on: structured data, metadata, headings, page content, and crawler permissions in `robots.txt` and `llms.txt`.
+
+PierviewBot only crawls a site when a customer starts an audit. It does not crawl the web at large, and the results are shown only to the customer who ran the audit.
+
+## What it fetches
+
+- `robots.txt`, `llms.txt`, and `sitemap.xml`
+- The homepage and pages listed in the site's sitemap
+- Public HTML pages only. PierviewBot does not log in, submit forms, or add items to a cart.
+
+## Crawl rate
+
+A single audit covers at most 500 pages. PierviewBot fetches one page at a time and defaults to 120 requests per minute, and customers can set a lower rate. Sites are not recrawled continuously, so a site usually sees one audit or none on a given day.
+
+PierviewBot reads `robots.txt` before crawling and skips paths it disallows.
+
+## How to identify PierviewBot
+
+Requests to Shopify stores carry this User-Agent:
+
+```
+Mozilla/5.0 (compatible; PierviewBot/1.0; +https://www.pierview.ai)
+```
+
+These requests are also signed with [Web Bot Auth](https://datatracker.ietf.org/doc/draft-meunier-web-bot-auth-architecture/) (HTTP Message Signatures, RFC 9421), so you can verify that a request really came from Pierview rather than from someone copying the User-Agent.
+
+| Header | Value |
+|--------|-------|
+| `Signature-Agent` | `"https://www.pierview.ai"` |
+| `Signature-Input` | Covers `@authority` and `signature-agent`, with `tag="web-bot-auth"` and `alg="ed25519"` |
+| `Signature` | Ed25519 signature over the components above |
+
+Our public signing keys are published at:
+
+```
+https://www.pierview.ai/.well-known/http-message-signatures-directory
+```
+
+## Opting out
+
+To stop PierviewBot from crawling your website, email [support@pierview.ai](mailto:support@pierview.ai) with the domain you want excluded. We will add it to our exclusion list and confirm by email.
+
+## Contact
+
+For questions about PierviewBot, crawl volume on your site, or to report a problem, contact [support@pierview.ai](mailto:support@pierview.ai).
