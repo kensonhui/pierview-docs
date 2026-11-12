@@ -26,11 +26,38 @@ Shopify lets store owners create a **crawler signature** for tools they trust. W
 
 ## Save it in Pierview
 
-1. Go to **Optimization > AI SEO Audit**, open **Advanced options** below the audit form, and scroll to **Shopify crawler access**.
-2. Click **Add signature**. In the window that opens, enter the store domain the signature was created for, for example `example.com`. It must be a domain your Shopify store is served on; Pierview rejects domains that are not hosted on Shopify.
-3. Paste the Signature, Signature-Input and Signature-Agent values, then click **Save signature**. Signature-Agent is optional: if you leave it empty, Pierview uses Shopify's value, `"https://shopify.com"`.
+<Steps>
+  <Step title="Open Advanced options">
+    Go to **Optimization > AI SEO Audit**. Below the domain field, click **Advanced options**.
 
-Your next audit of that domain uses the signature. Saved values are stored encrypted and are never shown again.
+    <Frame>
+      <img src="/images/shopify-crawler-access/audit-form.png" alt="AI SEO Audit form with the Advanced options toggle below the domain field" />
+    </Frame>
+  </Step>
+  <Step title="Click Add signature">
+    Scroll to **Shopify crawler access** at the bottom of Advanced options and click **Add signature**.
+
+    <Frame>
+      <img src="/images/shopify-crawler-access/advanced-options.png" alt="Advanced options expanded, showing the Shopify crawler access section and the Add signature button" />
+    </Frame>
+  </Step>
+  <Step title="Paste the values from Shopify">
+    In the window that opens, enter the store domain the signature was created for, for example `example.com`. It must be a domain your Shopify store is served on; Pierview rejects domains that are not hosted on Shopify.
+
+    Paste the **Signature**, **Signature-Input** and **Signature-Agent** values from Shopify, then click **Save signature**. Signature-Agent is optional: if you leave it empty, Pierview uses Shopify's value, `"https://shopify.com"`.
+
+    <Frame>
+      <img src="/images/shopify-crawler-access/add-signature-dialog.png" alt="Add Shopify crawler signature window with Store domain, Signature, Signature-Input and Signature-Agent fields" />
+    </Frame>
+  </Step>
+  <Step title="Check that it is saved">
+    The domain appears in the list with its expiry date and an **Active** label. Your next audit of that domain uses the signature. Saved values are stored encrypted and are never shown again.
+
+    <Frame>
+      <img src="/images/shopify-crawler-access/saved-signature.png" alt="Saved signature for example-store.com, marked Active with its expiry date" />
+    </Frame>
+  </Step>
+</Steps>
 
 <Note>
   A signature covers exactly one domain. If your store answers on both `example.com` and `www.example.com`, create a signature for the domain you enter in the audit, or one for each.
