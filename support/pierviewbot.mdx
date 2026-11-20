@@ -20,7 +20,7 @@ PierviewBot only crawls a site when a customer starts an audit. It does not craw
 
 A single audit covers at most 500 pages. PierviewBot fetches one page at a time and defaults to 120 requests per minute, and customers can set a lower rate. Sites are not recrawled continuously, so a site usually sees one audit or none on a given day.
 
-PierviewBot reads `robots.txt` before crawling and skips paths it disallows.
+Every PierviewBot request obeys `robots.txt`. PierviewBot follows the rules in a `User-agent: PierviewBot` group, or the `*` group when there is none, and never fetches a disallowed page, including through a browser render. A `Crawl-delay` in that group sets the minimum gap between requests. Pages skipped this way appear in the customer's audit as not audited because of `robots.txt`.
 
 ## How to identify PierviewBot
 
@@ -48,7 +48,14 @@ https://www.pierview.ai/.well-known/http-message-signatures-directory
 
 ## Opting out
 
-To stop PierviewBot from crawling your website, email [support@pierview.ai](mailto:support@pierview.ai) with the domain you want excluded. We will add it to our exclusion list and confirm by email.
+To stop PierviewBot from crawling your website, disallow it in `robots.txt`:
+
+```
+User-agent: PierviewBot
+Disallow: /
+```
+
+You can also email [support@pierview.ai](mailto:support@pierview.ai) with the domain you want excluded, and we will add it to our exclusion list and confirm by email.
 
 ## Contact
 
