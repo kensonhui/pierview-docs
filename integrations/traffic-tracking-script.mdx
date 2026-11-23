@@ -1,0 +1,120 @@
+---
+title: "Traffic Tracking Script"
+description: "Add the Pierview tracking script to your site, and keep caching plugins from breaking it"
+author: "Pierview AI"
+---
+
+## Overview
+
+The Pierview tracking script records visits to your website so **Traffic Analysis** can show where they come from, including visits sent by ChatGPT, Perplexity, Claude and other AI assistants. It is a single line of JavaScript added to every page.
+
+## Install the script
+
+<Steps>
+  <Step title="Create a tracking script">
+    In Pierview, open **Traffic Analysis**. If you have no script yet, click **Create your first script**. Otherwise, click the settings (gear) icon to open **Traffic Settings** and click **New script**.
+
+    You can limit the script to one domain, or leave the domain empty to allow any domain. Click **Create script** or press Enter.
+  </Step>
+  <Step title="Copy the code">
+    The dialog shows your script. It looks like this, with your own tracking ID:
+
+    ```html
+    <script src="https://www.pierview.ai/pierview-analytics.js?id=pv_123_abcd1234" async></script>
+    ```
+
+    You can show the code again at any time from **Traffic Settings** by clicking **Show code** next to the script.
+  </Step>
+  <Step title="Add it to your site">
+    Paste the code into the `<head>` section of every page, or just before the closing `</body>` tag. On WordPress, use your theme's header settings or a header and footer code plugin. On other platforms, use the custom code or tracking code setting.
+  </Step>
+</Steps>
+
+## Caching and optimization plugins
+
+The script reads your tracking ID from its own address, the `?id=pv_...` part. Some caching and optimization plugins copy outside scripts to your own server to minify or combine them, and change the address to something like:
+
+```text
+https://example.com/wp-content/cache/min/1/pierview-analytics.js?ver=123456
+```
+
+The tracking ID is gone, so the script records nothing for visitors who are served that cached page. Your traffic in Pierview will look much lower than in Google Analytics, and most of what remains will come from logged-in staff, whose pages are usually not cached.
+
+Plugins that **delay** JavaScript until the visitor scrolls, clicks or types keep the ID, but they miss every visitor who leaves without interacting. Excluding the script from delay is recommended too.
+
+To fix both, exclude `pierview-analytics.js` from your plugin's JavaScript optimizations, then clear its cache.
+
+<Warning>
+  We have seen this on live sites. WP Rocket's **Minify JavaScript files** option rewrites the script address to a copy on your own domain, such as `/wp-content/cache/min/1/pierview-analytics.js?ver=...`, which drops the tracking ID. If your site uses WP Rocket, check its settings first.
+</Warning>
+
+<AccordionGroup>
+  <Accordion title="WP Rocket">
+    WP Rocket hosts outside scripts on your domain when **Minify JavaScript files** is on, which removes the tracking ID.
+
+    1. In WordPress, go to **Settings** > **WP Rocket** > **File Optimization**.
+    2. If **Minify JavaScript files** is on, add `pierview-analytics.js` to its **Excluded JavaScript Files** box. Use the file name, not the `pierview.ai` domain: once the file is minified it is served from your domain, so the domain no longer matches.
+    3. If **Delay JavaScript execution** is on, add `pierview-analytics.js` to its **Excluded JavaScript Files** box as well.
+    4. Click **Save Changes**, then clear the cache from the **Dashboard** tab.
+
+    See WP Rocket's guides on [excluding external JavaScript](https://docs.wp-rocket.me/article/39-excluding-external-js-from-concatenation) and [Delay JavaScript execution](https://docs.wp-rocket.me/article/1349-delay-javascript-execution).
+  </Accordion>
+  <Accordion title="LiteSpeed Cache">
+    1. In WordPress, go to **LiteSpeed Cache** > **Page Optimization** > **Tuning**.
+    2. Add `pierview-analytics.js` to **JS Excludes** and to **JS Deferred / Delayed Excludes**.
+    3. Save changes, then go to **LiteSpeed Cache** > **Toolbox** > **Purge** and click **Purge All**.
+
+    See LiteSpeed's [Page Optimization settings](https://docs.litespeedtech.com/lscache/lscwp/pageopt/).
+  </Accordion>
+  <Accordion title="W3 Total Cache">
+    W3 Total Cache only minifies outside scripts that are listed under **Include external files/libraries**.
+
+    1. In WordPress, go to **Performance** > **Minify**.
+    2. If `pierview-analytics.js` is listed under **Include external files/libraries**, remove it.
+    3. Save settings, then click **Purge All Caches**.
+  </Accordion>
+  <Accordion title="Perfmatters">
+    1. In WordPress, go to **Settings** > **Perfmatters** > **JavaScript**.
+    2. If **Delay JavaScript** is on with **Delay all scripts** selected, add `pierview-analytics.js` to **Excluded from Delay**. If it delays only the scripts you list, make sure `pierview-analytics.js` is not in that list.
+    3. Click **Save Changes** and clear your page cache.
+
+    See Perfmatters' guide to [delaying JavaScript](https://perfmatters.io/docs/delay-javascript).
+  </Accordion>
+  <Accordion title="Other plugins">
+    SiteGround Speed Optimizer, NitroPack, FlyingPress, WP-Optimize, Hummingbird and similar plugins have JavaScript or file optimization settings.
+
+    1. Look for options to minify, combine, delay or defer JavaScript.
+    2. Add `pierview-analytics.js` to the exclusion list of each one that is on.
+    3. Save changes and clear the plugin's cache.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Autoptimize does not optimize scripts hosted on other domains, so it leaves the Pierview script alone and needs no changes.
+</Note>
+
+## Check that it works
+
+<Steps>
+  <Step title="Open your site as a visitor">
+    Open a page on your site in a private or incognito window, so you are not logged in and you get the cached page your visitors see.
+  </Step>
+  <Step title="Find the script">
+    View the page source and search for `pierview-analytics.js`.
+  </Step>
+  <Step title="Compare the address">
+    The address should match the code from Pierview exactly, starting with `https://www.pierview.ai/` and ending with `?id=` and your tracking ID. If it points to a file on your own domain, or the `?id=` part is missing, a plugin is still rewriting the script. Recheck its exclusions and clear its cache again.
+  </Step>
+</Steps>
+
+Once the address is right, new visits start appearing in **Traffic Analysis**.
+
+## Why Pierview and Google Analytics numbers differ
+
+The two tools count differently, so their figures will not match even when both are working:
+
+- Pierview records a visit on every page load, and again each time a visitor returns to a tab they left open. Google Analytics groups a visitor's activity into sessions.
+- Pierview flags likely bots and shows them separately.
+- Ad blockers and privacy settings can block either script.
+
+A large gap, such as Pierview showing a third of the sessions Google Analytics does, usually means a caching plugin is removing the tracking ID. Follow the steps above.

@@ -103,6 +103,7 @@
             "icon": "plug",
             "pages": [
               "integrations/mcp-server",
+              "integrations/traffic-tracking-script",
               "integrations/shopify-crawler-access"
             ]
           },
