@@ -84,6 +84,7 @@
             "group": "Content Creation",
             "icon": "pen-nib",
             "pages": [
+              "integrations/editing-and-review",
               "integrations/auto-publishing",
               "integrations/mcp-sources",
               {
