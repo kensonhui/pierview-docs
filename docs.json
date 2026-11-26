@@ -102,6 +102,7 @@
             "group": "Integrations",
             "icon": "plug",
             "pages": [
+              "integrations/google-search-console-and-analytics",
               "integrations/mcp-server",
               "integrations/traffic-tracking-script",
               "integrations/shopify-crawler-access"
