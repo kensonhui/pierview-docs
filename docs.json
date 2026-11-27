@@ -132,6 +132,7 @@
           {
             "group": "Help",
             "pages": [
+              "support/account-and-settings",
               "support/troubleshooting",
               "support/faq",
               "support/glossary",

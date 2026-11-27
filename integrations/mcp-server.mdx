@@ -229,6 +229,23 @@ Get top cited pages (URLs) with period citation metrics and per-LLM breakdown. T
 
 ---
 
+### `get_citations_for_domain`
+
+Look up how often AI answers for your tracked prompts cited one domain, including domains below the top of the host ranking. These are the figures on the website page under Citations.
+
+**Parameters:**
+
+| Parameter        | Type     | Required | Description                                                                                      |
+| ---------------- | -------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `domain`         | `string` | Yes      | The domain or any URL on it, for example `example.com` or `https://www.example.com/blog/post`    |
+| `startDate`      | `string` | No       | Start of the window in `YYYY-MM-DD` format. Defaults to 90 days before `endDate`                 |
+| `endDate`        | `string` | No       | End of the window in `YYYY-MM-DD` format. Defaults to today                                      |
+| `organizationId` | `number` | No       | Organization to query                                                                            |
+
+**Returns:** Total citations and days cited in the window, citations per AI model, citations and distinct pages per day, and the 10 most recent answers (any date) that cited the domain, with their prompt and model.
+
+---
+
 ### `get_visibility_timeseries`
 
 Get visibility trends over time by competitor. Returns at most 12 x-axis points and the top 5 competitors.
